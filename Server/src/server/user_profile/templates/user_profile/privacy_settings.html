@@ -1,0 +1,172 @@
+{% extends "base_profile.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'user_profile/css/settings.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css"
+	    integrity="sha256-n3ci71vDbbK59GUg1tuo+c3KO7+pnBOzt7BDmOe87s4=" crossorigin="anonymous" />
+     <link rel="stylesheet" href="{% static 'css/L.Control.Geonames.css' %}"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"
+	    integrity="sha256-KgOC04qt96w+EFba7KuNt9sT+ahJua25I0I2rrkZHFo=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.js"></script>
+    <script src="{% static 'location/js/location.js' %}"></script>
+
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3>Приватность и безопасность</h3>
+
+	<!-- Breadcrumbs -->
+	<nav id="breadcrumbs" class="dark">
+		<ul>
+			<li><a href="{% url 'index' %}">Главная страница</a></li>
+			<li><a href="{% url 'user_profile_app:profile' %}">Профиль</a></li>
+			<li><a href="#">Настройки</a></li>
+            <li>Приватность и безопасность</li>
+		</ul>
+	</nav>
+</div>
+
+<!-- Row -->
+<div class="row">
+
+	<!-- Dashboard Box -->
+	<div class="col-xl-12">
+		<div class="dashboard-box margin-top-0">
+
+			<!-- Headline -->
+			<div class="headline">
+				<h3><i class="icon-material-outline-account-circle"></i>Настройки пароля</h3>
+			</div>
+			<form action="{% url 'user_profile_app:change_password' %}" id="change_password_form" method="post">
+				{% csrf_token %}
+				<div class="content with-padding padding-bottom-0">
+					<div class="row">
+						<div class="col-sm-12 col-md-10">
+							<div class="row">
+                                <div class="col-xl-12">
+									<div class="submit-field">
+										<h5>{{ change_password_form.old_password.label }}</h5>
+										{{ change_password_form.old_password }}
+                                        {% if  change_password_form.old_password.errors%}
+                                            {% for error in change_password_form.old_password.errors %}
+                                                <h6 class="error-message">{{ error }}</h6>
+                                            {% endfor %}
+                                        {% endif %}
+									</div>
+								</div>
+
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ change_password_form.password.label }}</h5>
+										{{ change_password_form.password }}
+                                        {% if  change_password_form.password.errors%}
+                                           {% for error in change_password_form.password.errors %}
+                                                <h6 class="error-message">{{ error }}</h6>
+                                            {% endfor %}
+                                        {% endif %}
+									</div>
+								</div>
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ change_password_form.repeat_password.label }}</h5>
+										{{ change_password_form.repeat_password }}
+                                        {% if  change_password_form.repeat_password.errors%}
+                                            {% for error in change_password_form.repeat_password.errors %}
+                                                <h6 class="error-message">{{ error }}</h6>
+                                            {% endfor %}
+                                        {% endif %}
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Button -->
+	<div class="col-xl-12">
+		<button type="submit" form="change_password_form" id="change_password_form_button"
+			class="button ripple-effect big margin-top-30">Сохранить</button>
+	</div>
+
+    <hr>
+
+<div class="col-xl-12">
+		<div class="dashboard-box margin-top-0">
+
+			<!-- Headline -->
+			<div class="headline">
+				<h3><i class="icon-material-outline-account-circle"></i>Настройки пароля</h3>
+			</div>
+			<form action="{% url 'user_profile_app:change_email_and_phone' %}" id="change_email_and_phone_form" method="post">
+				{% csrf_token %}
+				<div class="content with-padding padding-bottom-0">
+					<div class="row">
+						<div class="col-sm-12 col-md-10">
+							<div class="row">
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ change_email_and_phone_form.email.label }}</h5>
+										{{ change_email_and_phone_form.email }}
+                                        {% if  change_email_and_phone_form.email.errors%}
+                                            {% for error in change_email_and_phone_form.email.errors %}
+                                                <h6 class="error-message">{{ error }}</h6>
+                                            {% endfor %}
+                                        {% endif %}
+									</div>
+								</div>
+
+                            {% if user.profile.is_email_verified%}
+                            {% else %}
+                                <div class="col-xl-6">
+									<div class="submit-field">
+                                        <a href="{% url 'user_profile_app:confirm_email' %}" class="button ripple-effect big margin-top-40">Подтвердить почту</a>
+									</div>
+								</div>
+                            {% endif %}
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ change_email_and_phone_form.phone_number.label }}</h5>
+										{{ change_email_and_phone_form.phone_number }}
+                                        {% if  change_email_and_phone_form.phone_number.errors%}
+                                           {% for error in change_email_and_phone_form.phone_number.errors %}
+                                                <h6 class="error-message">{{ error }}</h6>
+                                            {% endfor %}
+                                        {% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Button -->
+	<div class="col-xl-12">
+		<button type="submit" form="change_email_and_phone_form" id="change_email_and_phone_form_button"
+			class="button ripple-effect big margin-top-30">Сохранить</button>
+	</div>
+</div>
+    <script>
+        {% if is_password_changed %}
+             Snackbar.show({
+                text: 'Ваш пароль был изменен!',
+                pos: 'bottom-center',
+                showAction: false,
+                actionText: "Dismiss",
+                duration: 4000,
+                textColor: '#fff',
+                backgroundColor: '#383838'
+            });
+        {% endif %}
+    </script>
+<!-- Row / End -->
+{% endblock %}

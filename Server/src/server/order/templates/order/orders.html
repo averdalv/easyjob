@@ -1,0 +1,238 @@
+{% extends 'order/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% load location_tags %}
+{% block body_block %}
+
+<!-- Spacer -->
+<div class="margin-top-90"></div>
+<!-- Spacer / End-->
+
+<script>
+    "{% if current_category == category.value %}selected {% endif %}"
+    var current_category = "{{ current_category }}";
+    var csrf = '{{ csrf_token }}';
+    var order_url_base = "/order";
+    var path = "{% url 'order_app:orders' %}";
+    var first_order_path = "{% url 'order_app:add_order' %}";
+    var search_dict = {};
+</script>
+
+<script src="{% static 'order/js/main.js' %}"></script>
+<script src="{% static 'order/js/orders.js' %}"></script>
+
+
+<!-- Page Content
+================================================== -->
+<div class="container">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4">
+            <div class="sidebar-container">
+
+                <!-- Filters -->
+
+
+                <div class="clearfix"></div>
+                <!-- Location -->
+                <div class="sidebar-widget">
+                    <h3>Город</h3>
+                    <select class="city selectpicker" onchange="type_click('city', this.value);">
+                        <option selected value="all">
+                            Все города
+                        </option>
+                        {% get_cities as cities %}
+                        {% for city in cities %}
+                        <option value="{{ city.value }}">
+                            {{ city.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Category -->
+                <div class="sidebar-widget">
+                    <h3>Категория</h3>
+                    <select class="category selectpicker" onchange="type_click('category', this.value);">
+                        <option value="all">
+                            Все категории
+                        </option>
+                        {% for category in categories %}
+                        <option id="{{ category.value }}" value="{{ category.value }}">
+                            {{ category.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- SubCategory -->
+                <div id="subcategory-widget" class="sidebar-widget" style="display: none">
+                    <!-- <h3>Подкатегории</h3> -->
+                    <select id="subs" class="subcategory selectpicker"
+                        onchange="type_click('subcategory', this.value);">
+                        <option selected value="all">
+                            Все подкатегории
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="ff sidebar-widget">
+                    <h3>Заказчик</h3>
+                    <div class="radio">
+                        <input id="radio-1" name="customer_type" type="radio" value="all" checked="">
+                        <label for="radio-1"><span class="radio-label"></span> Все заказчики</label>
+                    </div>
+                    <br>
+                    <div class="radio">
+                        <input id="radio-2" name="customer_type" type="radio" value="individual">
+                        <label for="radio-2"><span class="radio-label"></span> Частное лицо</label>
+                    </div>
+                    <br>
+                    <div class="radio">
+                        <input id="radio-3" name="customer_type" type="radio" value="firm">
+                        <label for="radio-3"><span class="radio-label"></span> Фирма</label>
+                    </div>
+		        </div>
+
+
+                <!-- Keywords -->
+                <!-- <div class="sidebar-widget">
+                    <h3>Keywords</h3>
+                    <div class="keywords-container">
+                        <div class="keyword-input-container">
+                            <input type="text" class="keyword-input" placeholder="e.g. task title" />
+                            <button class="keyword-input-button ripple-effect"><i
+                                    class="icon-material-outline-add"></i></button>
+                        </div>
+                        <div class="keywords-list">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div> -->
+
+                <!-- Budget -->
+                <div class="sidebar-widget">
+                    <h3>Вознаграждение</h3>
+                    <div class="margin-top-55"></div>
+
+                    <input id="filter-slider" class="range-slider" type="text" value="" data-slider-currency="$" data-slider-min="10"
+                        data-slider-max="2500" data-slider-step="25" data-slider-value="[50,2500]" />
+                </div>
+
+                <div class="sidebar-widget">
+                    <div class="checkbox">
+                        <input type="checkbox" id="is-remote" onchange="remote_click(this.checked);">
+                        <label for="is-remote"><span class="checkbox-icon"></span> Удаленно</label>
+                    </div>
+                </div>
+
+                <!--
+
+                <div class="sidebar-widget">
+                    <h3>Hourly Rate</h3>
+                    <div class="margin-top-55"></div>
+
+                    <input class="range-slider" type="text" value="" data-slider-currency="$" data-slider-min="10"
+                        data-slider-max="150" data-slider-step="5" data-slider-value="[10,200]" />
+                </div> -->
+
+                <!-- Tags -->
+                <!-- <div class="sidebar-widget">
+                    <h3>Skills</h3>
+
+                    <div class="tags-container">
+                        <div class="tag">
+                            <input type="checkbox" id="tag1" />
+                            <label for="tag1">front-end dev</label>
+                        </div>
+                        <div class="tag">
+                            <input type="checkbox" id="tag2" />
+                            <label for="tag2">angular</label>
+                        </div>
+                        <div class="tag">
+                            <input type="checkbox" id="tag3" />
+                            <label for="tag3">react</label>
+                        </div>
+                        <div class="tag">
+                            <input type="checkbox" id="tag4" />
+                            <label for="tag4">vue js</label>
+                        </div>
+                        <div class="tag">
+                            <input type="checkbox" id="tag5" />
+                            <label for="tag5">web apps</label>
+                        </div>
+                        <div class="tag">
+                            <input type="checkbox" id="tag6" />
+                            <label for="tag6">design</label>
+                        </div>
+                        <div class="tag">
+                            <input type="checkbox" id="tag7" />
+                            <label for="tag7">wordpress</label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="keywords-container margin-top-20">
+                        <div class="keyword-input-container">
+                            <input type="text" class="keyword-input" placeholder="add more skills" />
+                            <button class="keyword-input-button ripple-effect"><i
+                                    class="icon-material-outline-add"></i></button>
+                        </div>
+                        <div class="keywords-list">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div> -->
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 content-left-offset">
+
+            <h3 class="page-title">Результаты поиска</h3>
+            <input type="hidden" class="filter keyword-input-button ripple-effect" />
+
+            <div class="filter-box notify-box margin-top-15" style="display: block">
+                <div class="switch-container">
+ 
+                    <div class="keywords-container">
+                        <div class="keyword-input-container">
+                            <input type="hidden" data-type="" class="filter keyword-input" />
+                        </div>
+                        <div class="keywords-list"></div>
+                    </div>
+                </div>
+
+                 <div class="sort-by">
+                    <span>Сортировать:</span>
+                    <select class="selectpicker hide-tick">
+                        <option>Relevance</option>
+                        <option>Newest</option>
+                        <option>Oldest</option>
+                        <option>Random</option>
+                    </select>
+                </div> 
+            </div> 
+
+            <!-- Tasks Container -->
+            <div class="tasks-list-container margin-top-35">
+
+                <!-- FOR ORDERS -->
+
+                <div id="orders"></div>
+
+                <!-- Pagination -->
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 paginator">
+
+                    </div>
+                </div>
+                <!-- Pagination / End -->
+            </div>
+            <!-- Tasks Container / End -->
+
+        </div>
+    </div>
+</div>
+{% endblock %}

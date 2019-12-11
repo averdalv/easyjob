@@ -1,0 +1,26 @@
+[
+    {
+        "model": "location.orderlocationtype",
+        "pk": 1,
+        "fields": {
+            "name": "У заказчика",
+            "value": "in-customer"
+        }
+    },
+    {
+        "model": "location.orderlocationtype",
+        "pk": 2,
+        "fields": {
+            "name": "У исполнителя",
+            "value": "in-performer"
+        }
+    },
+    {
+        "model": "location.orderlocationtype",
+        "pk": 3,
+        "fields": {
+            "name": "Удаленно",
+            "value": "in-remote"
+        }
+    }
+]

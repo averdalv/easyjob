@@ -1,0 +1,52 @@
+[
+    {
+        "model": "location.city",
+        "pk": 1,
+        "fields": {
+            "name": "Киев",
+            "value": "kiev",
+            "lat": "50.4500336",
+            "lon": "30.5241361"
+        }
+    },
+    {
+        "model": "location.city",
+        "pk": 2,
+        "fields": {
+            "name": "Чернигов",
+            "value": "chernigov",
+            "lat": "51.4930575",
+            "lon": "31.2947188"
+        }
+    },
+    {
+        "model": "location.city",
+        "pk": 3,
+        "fields": {
+            "name": "Винница",
+            "value": "vinnica",
+            "lat": "49.2320162",
+            "lon": "28.4679750"
+        }
+    },
+    {
+        "model": "location.city",
+        "pk": 4,
+        "fields": {
+            "name": "Житомир",
+            "value": "zhitomir",
+            "lat": "50.2598298",
+            "lon": "28.6692345"
+        }
+    },
+    {
+        "model": "location.city",
+        "pk": 5,
+        "fields": {
+            "name": "Ивано-Франковск",
+            "value": "ivano-frankovsk",
+            "lat": "48.9092",
+            "lon": "24.7007"
+        }
+    }
+]

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+{% load static %}
+
+<!-- Titlebar
+================================================== -->
+<div class="single-page-header freelancer-header" data-background-image="images/single-freelancer.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="single-page-header-inner">
+                    <div class="left-side">
+                        <div class="header-image freelancer-avatar"><img src="{{ performer.user.profile.profile_picture.url }}" alt="">
+                        </div>
+                        <div class="header-details">
+                            <h3>{{ performer.user.get_name }} {% if user == performer.user %}(Вы){% endif %} <span>{% if performer.user.ifFirm %}Фирма{% else %}Частное лицо{% endif %}</span></h3>
+                            <ul>
+                                <li>
+                                    <div class="star-rating" data-rating="5.0"></div>
+                                </li>
+                                {% if performer.user.profile.location %}<li><img class="flag" src="{% static 'images/flags/ua.svg' %}" alt=""> {{ performer.user.profile.location.city.name }}</li>{% endif %}
+                                <li>
+                                    {% if perfromer.profile.is_passport_verified %}{% else %}<div class="verified-badge-with-title">Документы подтверждены</div>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+{% endblock %}

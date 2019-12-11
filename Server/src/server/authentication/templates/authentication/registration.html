@@ -1,0 +1,35 @@
+{% extends "authentication/base.html" %}
+{% load static %}
+{% block body_block %}
+ <link rel="stylesheet" href="{% static 'authentication/css/login.css' %}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <div class="form-v5">
+        <div class="page-content">
+            <div class="form-v5-content">
+                <form class="form-detail"  action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    <h2>Регистрация</h2>
+                    {% for field in form %}
+                         <div class="form-row">
+
+                            {{ field.label }}
+                            {{ field }}
+
+                             {% if field.errors %}
+                                <div class="alert alert-danger">
+                                {{ field.errors }}
+                                </div>
+                            {% endif %}
+                         <i class="fas fa-user"></i>
+                        </div>
+                    {% endfor %}
+                <div class="form-row-last">
+                        <input type="submit" name="register" class="register" value="Зарегистрироваться">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

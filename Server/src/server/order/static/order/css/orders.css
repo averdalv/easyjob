@@ -1,0 +1,41 @@
+    .toolgroup,
+    .toolgroup li ul {
+        padding: 0px;
+        list-style: none;
+        width: 100%;
+        /* background: #ccc; */
+        /* border: 1px solid #000; */
+    }
+
+    .toolgroup li,
+    .toolgroup li ul li {
+        width: 100%;
+        position: relative;
+
+    }
+
+    .toolgroup li a,
+    .toolgroup li ul li a {
+        padding: 0px 0px;
+        display: block;
+        /* border-bottom: 1px solid #000; */
+    }
+    .toolgroup li ul {
+        display: none;
+        position: absolute;
+        left: 190px;
+        top: 0px;
+    }
+
+    .toolgroup li:hover ul {
+        display: block;
+        background: white;
+        z-index: 1;
+    }
+
+
+    .sub-item {
+        border: #0c5460 solid 1px;
+        border-radius: 15px;
+        padding: 2px;
+    }

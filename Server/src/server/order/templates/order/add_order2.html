@@ -1,0 +1,155 @@
+{% extends "order/base.html" %}
+{% load static %}
+{% block body_block %}
+<link rel="stylesheet" href="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<!-- <script src="{% static 'js/dropzone.js' %}"></script> -->
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
+
+<style>
+    #img_id {
+        display: none
+    }
+
+    /* Just add this CSS to your project */
+
+    .dropzone {
+        border: 2px dashed #dedede;
+        border-radius: 5px;
+        background: #f5f5f5;
+    }
+
+    .dropzone i {
+        font-size: 5rem;
+    }
+
+    input:-moz-read-only {
+        /* For Firefox */
+        background-color: white;
+    }
+
+    input:read-only {
+        background-color: white;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<section class="">
+    <div class="container">
+        <div class="">
+            <div class="align-item-center">
+                <div class="border">
+                    <form enctype="multipart/form-data" method="POST" id="formid">
+                        {% csrf_token %}
+                        <fieldset class="p-4">
+                            {{ simple_order_form.as_p }}
+
+                            <img id="img_id" src="#" alt="your image" width="100" height="100" />
+                            <p></p>
+
+                            <input type="hidden" value="{{ uuid }}" name="uuid">
+
+                            <input type="submit" id="submit-form" style="display: none;" />
+                        </fieldset>
+
+                    </form>
+
+                    <div style="text-align: center">
+                        <h3>Галерея заказа</h3>
+                    </div>
+
+                    <div class="container">
+                        <div class="row my-4">
+                            <div class="col">
+                                <div class="jumbotron">
+                                    <form action="/file-upload" method="post" action="/upload"
+                                        class="dropzone dz-clickable" id="upload-widget">
+                                        {% csrf_token %}
+                                        <div class="fallback">
+                                            <input name="file" type="file" />
+                                        </div>
+                                        <div class="dz-message d-flex flex-column">
+                                            <i class="material-icons text-muted">cloud_upload</i>
+                                            Drag &amp; Drop here or click
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <input type="submit" name="" value="Add"> -->
+                    <div class="p-4">
+                        <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                            <input class="btn btn-primary" type="submit" form="formid" value="Отправить" />
+                        </div>
+                    </div>
+
+
+                    <script>
+                        function upload_img(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    $('#img_id').show();
+                                    $('#img_id').attr('src', e.target.result);
+                                }
+
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                        $(document).ready(function () {
+                            $("#datetimepicker").datetimepicker({
+                                format: 'm/d/Y H:i'
+                            });
+
+                            $("body").on("change", "#id_order_image_preview", function () {
+                                upload_img(this);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<script>
+    Dropzone.options.uploadWidget = {
+        paramName: 'file',
+        maxFilesize: 5, // MB
+        dictDefaultMessage: 'Drag an image here to upload, or click to select one',
+        init: function () {
+            this.on("drop", function (file) { });
+        },
+        sending: function (hz, xhr, formData) {
+            formData.append("uuid", "{{uuid}}")
+        },
+        success: function (hz, response) {
+            // alert(response)
+        },
+        url: "{% url 'order_app:upload_gallery_photo' %}"
+    }
+    // $(function () {
+    //     var myDropzone = $("#upload-widget");
+
+
+    //     myDropzone.on("drop", function (event) {
+    //         /* Maybe display some more file information on your page */
+    //         alert(1)
+    //     });
+
+    //     myDropzone.on("addedfile", function (file) {
+    //         file.previewElement.addEventListener("click", function () {
+    //             myDropzone.removeFile(file);
+    //         });
+    //     });
+    // });
+
+</script>
+{% endblock %}

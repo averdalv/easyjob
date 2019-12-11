@@ -1,0 +1,18 @@
+[
+    {
+        "model": "performer.language",
+        "pk": 1,
+        "fields": {
+            "name": "Английский",
+            "value": "english"
+        }
+    },
+    {
+        "model": "performer.language",
+        "pk": 2,
+        "fields": {
+            "name": "Французкий",
+            "value": "french"
+        }
+    }
+]

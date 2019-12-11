@@ -1,0 +1,683 @@
+{% extends 'performer/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<section class="page-search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advance Search -->
+                <div class="advance-search">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control my-2 my-lg-0" id="inputtext4"
+                                    placeholder="What are you looking for">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="text" class="form-control my-2 my-lg-0" id="inputCategory4"
+                                    placeholder="Category">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="text" class="form-control my-2 my-lg-0" id="inputLocation4"
+                                    placeholder="Location">
+                            </div>
+                            <div class="form-group col-md-2">
+
+                                <button type="submit" class="btn btn-primary">Search Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===================================
+        =            Store Section            =
+        ====================================-->
+<section class="section bg-gray">
+    <!-- Container Start -->
+    <div class="container">
+        <div class="row">
+            <!-- Left sidebar -->
+            <div class="col-md-8">
+                <div class="product-details">
+                    <h1 class="product-title">Профиль пользователя</h1>
+                    <div class="product-meta">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><i class="fa fa-user-o"></i> By <a href="">{{ performer.user.first_name }}</a></li>
+                            <li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Category<a
+                                    href="">Electronics</a></li>
+                            <li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">Dhaka
+                                    Bangladesh</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- product slider -->
+                    <div class="product-slider slick-initialized slick-slider slick-dotted"><i
+                            class="fa fa-chevron-left arrow-left slick-arrow" style=""></i>
+                        <div class="slick-list draggable">
+                            <div class="slick-track"
+                                style="opacity: 1; width: 4950px; transform: translate3d(-450px, 0px, 0px);">
+                                <div class="product-slider-item my-4 slick-slide slick-cloned"
+                                    data-image="{% static 'images/products/products-2.jpg' %}" data-slick-index="-1"
+                                    aria-hidden="true" tabindex="-1" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-2.jpg' %}" alt="Third slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide slick-current slick-active"
+                                    data-image="{% static 'images/products/products-1.jpg' %}" data-slick-index="0"
+                                    aria-hidden="false" tabindex="0" role="tabpanel" id="slick-slide00"
+                                    aria-describedby="slick-slide-control00" style="width: 450px;">
+                                    <img class="img-fluid w-100" src="{% static 'images/products/products-1.jpg' %}"
+                                        alt="product-img">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide"
+                                    data-image="{% static 'images/products/products-2.jpg' %}" data-slick-index="1"
+                                    aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide01"
+                                    aria-describedby="slick-slide-control01" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-2.jpg' %}" alt="Second slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide"
+                                    data-image="{% static 'images/products/products-3.jpg' %}" data-slick-index="2"
+                                    aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide02"
+                                    aria-describedby="slick-slide-control02" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-3.jpg' %}" alt="Third slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide"
+                                    data-image="{% static 'images/products/products-1.jpg' %}" data-slick-index="3"
+                                    aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide03"
+                                    aria-describedby="slick-slide-control03" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-1.jpg' %}" alt="Third slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide"
+                                    data-image="{% static 'images/products/products-2.jpg' %}" data-slick-index="4"
+                                    aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide04"
+                                    aria-describedby="slick-slide-control04" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-2.jpg' %}" alt="Third slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide slick-cloned"
+                                    data-image="{% static 'images/products/products-1.jpg' %}" data-slick-index="5"
+                                    aria-hidden="true" tabindex="-1" style="width: 450px;">
+                                    <img class="img-fluid w-100" src="{% static 'images/products/products-1.jpg' %}"
+                                        alt="product-img">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide slick-cloned"
+                                    data-image="{% static 'images/products/products-2.jpg' %}" data-slick-index="6"
+                                    aria-hidden="true" tabindex="-1" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-2.jpg' %}" alt="Second slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide slick-cloned"
+                                    data-image="{% static 'images/products/products-3.jpg' %}" data-slick-index="7"
+                                    aria-hidden="true" tabindex="-1" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-3.jpg' %}" alt="Third slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide slick-cloned"
+                                    data-image="{% static 'images/products/products-1.jpg' %}" data-slick-index="8"
+                                    aria-hidden="true" tabindex="-1" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-1.jpg' %}" alt="Third slide">
+                                </div>
+                                <div class="product-slider-item my-4 slick-slide slick-cloned"
+                                    data-image="{% static 'images/products/products-2.jpg' %}" data-slick-index="9"
+                                    aria-hidden="true" tabindex="-1" style="width: 450px;">
+                                    <img class="d-block img-fluid w-100"
+                                        src="{% static 'images/products/products-2.jpg' %}" alt="Third slide">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <i class="fa fa-chevron-right arrow-right slick-arrow" style=""></i>
+                        <ul class="slick-dots" style="" role="tablist">
+                            <li class="slick-active" role="presentation"><img class="img-fluid"
+                                    src="{% static 'images/products/products-1.jpg' %}" alt="product-img"></li>
+                            <li role="presentation"><img class="img-fluid"
+                                    src="{% static 'images/products/products-2.jpg' %}" alt="product-img"></li>
+                            <li role="presentation"><img class="img-fluid"
+                                    src="{% static 'images/products/products-3.jpg' %}" alt="product-img"></li>
+                            <li role="presentation"><img class="img-fluid"
+                                    src="{% static 'images/products/products-1.jpg' %}" alt="product-img"></li>
+                            <li role="presentation"><img class="img-fluid"
+                                    src="{% static 'images/products/products-2.jpg' %}" alt="product-img"></li>
+                        </ul>
+                    </div>
+                    <!-- product slider -->
+
+                    <div class="content mt-5 pt-5">
+                        <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link show" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                    role="tab" aria-controls="pills-home" aria-selected="false">Product Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link show" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                    role="tab" aria-controls="pills-profile" aria-selected="false">Specifications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active show" id="pills-contact-tab" data-toggle="pill"
+                                    href="#pills-contact" role="tab" aria-controls="pills-contact"
+                                    aria-selected="true">Reviews</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <h3 class="tab-title">Product Description</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia laudantium beatae
+                                    quod perspiciatis, neque
+                                    dolores eos rerum, ipsa iste cum culpa numquam amet provident eveniet pariatur, sunt
+                                    repellendus quas
+                                    voluptate dolor cumque autem molestias. Ab quod quaerat molestias culpa eius,
+                                    perferendis facere vitae commodi
+                                    maxime qui numquam ex voluptatem voluptate, fuga sequi, quasi! Accusantium eligendi
+                                    vitae unde iure officia
+                                    amet molestiae velit assumenda, quidem beatae explicabo dolore laboriosam mollitia
+                                    quod eos, eaque voluptas
+                                    enim fuga laborum, error provident labore nesciunt ad. Libero reiciendis
+                                    necessitatibus voluptates ab
+                                    excepturi rem non, nostrum aut aperiam? Itaque, aut. Quas nulla perferendis neque
+                                    eveniet ullam?</p>
+
+                                <iframe width="100%" height="400"
+                                    src="https://www.youtube.com/embed/LUH7njvhydE?rel=0&amp;controls=0&amp;showinfo=0"
+                                    frameborder="0" allowfullscreen=""></iframe>
+                                <p></p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam sed, officia
+                                    reiciendis necessitatibus
+                                    obcaecati eum, quaerat unde illo suscipit placeat nihil voluptatibus ipsa omnis
+                                    repudiandae, excepturi! Id
+                                    aperiam eius perferendis cupiditate exercitationem, mollitia numquam fuga, inventore
+                                    quam eaque cumque fugiat,
+                                    neque repudiandae dolore qui itaque iste asperiores ullam ut eum illum aliquam
+                                    dignissimos similique! Aperiam
+                                    aut temporibus optio nulla numquam molestias eum officia maiores aliquid laborum et
+                                    officiis pariatur,
+                                    delectus sapiente molestiae sit accusantium a libero, eligendi vero eius laboriosam
+                                    minus. Nemo quibusdam
+                                    nesciunt doloribus repellendus expedita necessitatibus velit vero?</p>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                aria-labelledby="pills-profile-tab">
+                                <h3 class="tab-title">Product Specifications</h3>
+                                <table class="table table-bordered product-table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Seller Price</td>
+                                            <td>$450</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Added</td>
+                                            <td>26th December</td>
+                                        </tr>
+                                        <tr>
+                                            <td>State</td>
+                                            <td>Dhaka</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Brand</td>
+                                            <td>Apple</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Condition</td>
+                                            <td>Used</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Model</td>
+                                            <td>2017</td>
+                                        </tr>
+                                        <tr>
+                                            <td>State</td>
+                                            <td>Dhaka</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Battery Life</td>
+                                            <td>23</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade active show" id="pills-contact" role="tabpanel"
+                                aria-labelledby="pills-contact-tab">
+                                <h3 class="tab-title">Product Review</h3>
+                                <div class="product-review">
+                                    <div class="media">
+                                        <!-- Avater -->
+                                        <img src="{% static 'images/user/user-thumb.jpg' %}" alt="avater">
+                                        <div class="media-body">
+                                            <!-- Ratings -->
+                                            <div class="ratings">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-star"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="name">
+                                                <h5>Jessica Brown</h5>
+                                            </div>
+                                            <div class="date">
+                                                <p>Mar 20, 2018</p>
+                                            </div>
+                                            <div class="review-comment">
+                                                <p>
+                                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                                    accusantium doloremqe laudant tota rem ape
+                                                    riamipsa eaque.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-submission">
+                                        <h3 class="tab-title">Submit your review</h3>
+                                        <!-- Rate -->
+                                        <div class="rate">
+                                            <div class="starrr"><i class="fa-star-o fa"></i><i
+                                                    class="fa-star-o fa"></i><i class="fa-star-o fa"></i><i
+                                                    class="fa-star-o fa"></i><i class="fa-star-o fa"></i></div>
+                                        </div>
+                                        <div class="review-submit">
+                                            <form action="#" class="row">
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="name" id="name" class="form-control"
+                                                        placeholder="Name">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="email" name="email" id="email" class="form-control"
+                                                        placeholder="Email">
+                                                </div>
+                                                <div class="col-12">
+                                                    <textarea name="review" id="review" rows="10" class="form-control"
+                                                        placeholder="Message"></textarea>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-main">Sumbit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <div class="widget price text-center">
+                        <h4>Price</h4>
+                        <p>$230</p>
+                    </div>
+                    <!-- User Profile widget -->
+                    <div class="widget user text-center">
+                        <img class="rounded-circle img-fluid mb-5 px-5" src="{% static 'images/user/user-thumb.jpg' %}"
+                            alt="">
+                        <h4><a href="">{{ performer.user.first_name }} {{performer.user.last_name  }}</a></h4>
+                        <p class="member-time">Зарегестрирован {{ performer.user.date_joined }}</p>
+                        <a href="">See all ads</a>
+                        <ul class="list-inline mt-20">
+                            <li class="list-inline-item"><a href=""
+                                    class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a>
+                            </li>
+                            <li class="list-inline-item"><a href=""
+                                    class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">Make an
+                                    offer</a></li>
+                        </ul>
+                    </div>
+                    <!-- Map Widget -->
+                    <div class="widget map">
+                        <div class="map">
+                            <div id="map_canvas" data-latitude="51.507351" data-longitude="-0.127758"
+                                style="position: relative; overflow: hidden;">
+                                <div
+                                    style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(0, 0, 0);">
+                                    <div class="gm-style"
+                                        style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
+                                        <div tabindex="0"
+                                            style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;">
+                                            <div
+                                                style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
+                                                <div
+                                                    style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                        <div
+                                                            style="position: absolute; z-index: 985; transform: matrix(1, 0, 0, 1, -95, -52);">
+                                                            <div
+                                                                style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div
+                                                                style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div
+                                                                style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div
+                                                                style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div
+                                                                style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                            <div
+                                                                style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;">
+                                                                <div style="width: 256px; height: 256px;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;">
+                                                </div>
+                                                <div
+                                                    style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;">
+                                                </div>
+                                                <div
+                                                    style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: -1;">
+                                                        <div
+                                                            style="position: absolute; z-index: 985; transform: matrix(1, 0, 0, 1, -95, -52);">
+                                                            <div
+                                                                style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;">
+                                                            </div>
+                                                            <div
+                                                                style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 0px;">
+                                                            </div>
+                                                            <div
+                                                                style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -256px;">
+                                                            </div>
+                                                            <div
+                                                                style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -256px;">
+                                                            </div>
+                                                            <div
+                                                                style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: -256px;">
+                                                            </div>
+                                                            <div
+                                                                style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 0px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        style="width: 40px; height: 49px; overflow: hidden; position: absolute; left: -20px; top: -49px; z-index: 0;">
+                                                        <img alt="" src="plugins/google-map/images/marker.png"
+                                                            draggable="false"
+                                                            style="position: absolute; left: 0px; top: 0px; width: 40px; height: 49px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                    </div>
+                                                </div>
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                    <div
+                                                        style="position: absolute; z-index: 985; transform: matrix(1, 0, 0, 1, -95, -52);">
+                                                        <div
+                                                            style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                                            <img draggable="false" alt="" role="presentation"
+                                                                src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16372!3i10896!4i256!2m3!1e0!2sm!3i467177392!3m14!2sen-US!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjgxfHMuZTpnfHAuYzojZmZmN2YxZGYscy50OjgyfHMuZTpnfHAuYzojZmZkMGUzYjQscy50OjEzMTR8cy5lOmd8cC52Om9mZixzLnQ6MnxzLmU6bHxwLnY6b2ZmLHMudDozM3xwLnY6b2ZmLHMudDozNnxzLmU6Z3xwLmM6I2ZmZmJkM2RhLHMudDo0MHxzLmU6Z3xwLmM6I2ZmYmRlNmFiLHMudDozfHMuZTpnLnN8cC52Om9mZixzLnQ6M3xzLmU6bHxwLnY6b2ZmLHMudDo0OXxzLmU6Zy5mfHAuYzojZmZmZmUxNWYscy50OjQ5fHMuZTpnLnN8cC5jOiNmZmVmZDE1MSxzLnQ6NTB8cy5lOmcuZnxwLmM6I2ZmZmZmZmZmLHMudDo1MXxzLmU6Zy5mfHAuYzpibGFjayxzLnQ6MTA1OXxzLmU6Zy5mfHAuYzojZmZjZmIyZGIscy50OjZ8cy5lOmd8cC5jOiNmZmEyZGFmMg!4e0!5m1!5f2&amp;key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;token=102678"
+                                                                style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                        </div>
+                                                        <div
+                                                            style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                                            <img draggable="false" alt="" role="presentation"
+                                                                src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16371!3i10896!4i256!2m3!1e0!2sm!3i467177392!3m14!2sen-US!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjgxfHMuZTpnfHAuYzojZmZmN2YxZGYscy50OjgyfHMuZTpnfHAuYzojZmZkMGUzYjQscy50OjEzMTR8cy5lOmd8cC52Om9mZixzLnQ6MnxzLmU6bHxwLnY6b2ZmLHMudDozM3xwLnY6b2ZmLHMudDozNnxzLmU6Z3xwLmM6I2ZmZmJkM2RhLHMudDo0MHxzLmU6Z3xwLmM6I2ZmYmRlNmFiLHMudDozfHMuZTpnLnN8cC52Om9mZixzLnQ6M3xzLmU6bHxwLnY6b2ZmLHMudDo0OXxzLmU6Zy5mfHAuYzojZmZmZmUxNWYscy50OjQ5fHMuZTpnLnN8cC5jOiNmZmVmZDE1MSxzLnQ6NTB8cy5lOmcuZnxwLmM6I2ZmZmZmZmZmLHMudDo1MXxzLmU6Zy5mfHAuYzpibGFjayxzLnQ6MTA1OXxzLmU6Zy5mfHAuYzojZmZjZmIyZGIscy50OjZ8cy5lOmd8cC5jOiNmZmEyZGFmMg!4e0!5m1!5f2&amp;key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;token=2225"
+                                                                style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                        </div>
+                                                        <div
+                                                            style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                                            <img draggable="false" alt="" role="presentation"
+                                                                src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16371!3i10895!4i256!2m3!1e0!2sm!3i467177392!3m14!2sen-US!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjgxfHMuZTpnfHAuYzojZmZmN2YxZGYscy50OjgyfHMuZTpnfHAuYzojZmZkMGUzYjQscy50OjEzMTR8cy5lOmd8cC52Om9mZixzLnQ6MnxzLmU6bHxwLnY6b2ZmLHMudDozM3xwLnY6b2ZmLHMudDozNnxzLmU6Z3xwLmM6I2ZmZmJkM2RhLHMudDo0MHxzLmU6Z3xwLmM6I2ZmYmRlNmFiLHMudDozfHMuZTpnLnN8cC52Om9mZixzLnQ6M3xzLmU6bHxwLnY6b2ZmLHMudDo0OXxzLmU6Zy5mfHAuYzojZmZmZmUxNWYscy50OjQ5fHMuZTpnLnN8cC5jOiNmZmVmZDE1MSxzLnQ6NTB8cy5lOmcuZnxwLmM6I2ZmZmZmZmZmLHMudDo1MXxzLmU6Zy5mfHAuYzpibGFjayxzLnQ6MTA1OXxzLmU6Zy5mfHAuYzojZmZjZmIyZGIscy50OjZ8cy5lOmd8cC5jOiNmZmEyZGFmMg!4e0!5m1!5f2&amp;key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;token=128556"
+                                                                style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                        </div>
+                                                        <div
+                                                            style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                                            <img draggable="false" alt="" role="presentation"
+                                                                src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16372!3i10895!4i256!2m3!1e0!2sm!3i467177392!3m14!2sen-US!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjgxfHMuZTpnfHAuYzojZmZmN2YxZGYscy50OjgyfHMuZTpnfHAuYzojZmZkMGUzYjQscy50OjEzMTR8cy5lOmd8cC52Om9mZixzLnQ6MnxzLmU6bHxwLnY6b2ZmLHMudDozM3xwLnY6b2ZmLHMudDozNnxzLmU6Z3xwLmM6I2ZmZmJkM2RhLHMudDo0MHxzLmU6Z3xwLmM6I2ZmYmRlNmFiLHMudDozfHMuZTpnLnN8cC52Om9mZixzLnQ6M3xzLmU6bHxwLnY6b2ZmLHMudDo0OXxzLmU6Zy5mfHAuYzojZmZmZmUxNWYscy50OjQ5fHMuZTpnLnN8cC5jOiNmZmVmZDE1MSxzLnQ6NTB8cy5lOmcuZnxwLmM6I2ZmZmZmZmZmLHMudDo1MXxzLmU6Zy5mfHAuYzpibGFjayxzLnQ6MTA1OXxzLmU6Zy5mfHAuYzojZmZjZmIyZGIscy50OjZ8cy5lOmd8cC5jOiNmZmEyZGFmMg!4e0!5m1!5f2&amp;key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;token=97938"
+                                                                style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                        </div>
+                                                        <div
+                                                            style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                                            <img draggable="false" alt="" role="presentation"
+                                                                src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16373!3i10895!4i256!2m3!1e0!2sm!3i467177392!3m14!2sen-US!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjgxfHMuZTpnfHAuYzojZmZmN2YxZGYscy50OjgyfHMuZTpnfHAuYzojZmZkMGUzYjQscy50OjEzMTR8cy5lOmd8cC52Om9mZixzLnQ6MnxzLmU6bHxwLnY6b2ZmLHMudDozM3xwLnY6b2ZmLHMudDozNnxzLmU6Z3xwLmM6I2ZmZmJkM2RhLHMudDo0MHxzLmU6Z3xwLmM6I2ZmYmRlNmFiLHMudDozfHMuZTpnLnN8cC52Om9mZixzLnQ6M3xzLmU6bHxwLnY6b2ZmLHMudDo0OXxzLmU6Zy5mfHAuYzojZmZmZmUxNWYscy50OjQ5fHMuZTpnLnN8cC5jOiNmZmVmZDE1MSxzLnQ6NTB8cy5lOmcuZnxwLmM6I2ZmZmZmZmZmLHMudDo1MXxzLmU6Zy5mfHAuYzpibGFjayxzLnQ6MTA1OXxzLmU6Zy5mfHAuYzojZmZjZmIyZGIscy50OjZ8cy5lOmd8cC5jOiNmZmEyZGFmMg!4e0!5m1!5f2&amp;key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;token=67320"
+                                                                style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                        </div>
+                                                        <div
+                                                            style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                                            <img draggable="false" alt="" role="presentation"
+                                                                src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16373!3i10896!4i256!2m3!1e0!2sm!3i467177392!3m14!2sen-US!3sUS!5e18!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcy50OjgxfHMuZTpnfHAuYzojZmZmN2YxZGYscy50OjgyfHMuZTpnfHAuYzojZmZkMGUzYjQscy50OjEzMTR8cy5lOmd8cC52Om9mZixzLnQ6MnxzLmU6bHxwLnY6b2ZmLHMudDozM3xwLnY6b2ZmLHMudDozNnxzLmU6Z3xwLmM6I2ZmZmJkM2RhLHMudDo0MHxzLmU6Z3xwLmM6I2ZmYmRlNmFiLHMudDozfHMuZTpnLnN8cC52Om9mZixzLnQ6M3xzLmU6bHxwLnY6b2ZmLHMudDo0OXxzLmU6Zy5mfHAuYzojZmZmZmUxNWYscy50OjQ5fHMuZTpnLnN8cC5jOiNmZmVmZDE1MSxzLnQ6NTB8cy5lOmcuZnxwLmM6I2ZmZmZmZmZmLHMudDo1MXxzLmU6Zy5mfHAuYzpibGFjayxzLnQ6MTA1OXxzLmU6Zy5mfHAuYzojZmZjZmIyZGIscy50OjZ8cy5lOmd8cC5jOiNmZmEyZGFmMg!4e0!5m1!5f2&amp;key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;token=72060"
+                                                                style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gm-style-pbc"
+                                                style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;">
+                                                <p class="gm-style-pbt"></p>
+                                            </div>
+                                            <div
+                                                style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;">
+                                                <div
+                                                    style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
+                                                    <div
+                                                        style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;">
+                                                    </div>
+                                                    <div
+                                                        style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;">
+                                                    </div>
+                                                    <div
+                                                        style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
+                                                        <div title="Bexar"
+                                                            style="width: 40px; height: 49px; overflow: hidden; position: absolute; opacity: 0; cursor: pointer; touch-action: none; left: -20px; top: -49px; z-index: 0;">
+                                                            <img alt="" src="plugins/google-map/images/marker.png"
+                                                                draggable="false"
+                                                                style="position: absolute; left: 0px; top: 0px; width: 40px; height: 49px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><iframe aria-hidden="true" frameborder="0"
+                                            style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"
+                                            src="about:blank"></iframe>
+                                        <div
+                                            style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;">
+                                            <a target="_blank" rel="noopener"
+                                                href="https://maps.google.com/maps?ll=51.507351,-0.127758&amp;z=15&amp;hl=en-US&amp;gl=US&amp;mapclient=apiv3"
+                                                title="Open this area in Google Maps (opens a new window)"
+                                                style="position: static; overflow: visible; float: none; display: inline;">
+                                                <div style="width: 66px; height: 26px; cursor: pointer;"><img alt=""
+                                                        src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5_hdpi.png"
+                                                        draggable="false"
+                                                        style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 180px; height: 180px; position: absolute; left: 5px; top: 60px;">
+                                            <div style="padding: 0px 0px 10px; font-size: 16px;">Map Data</div>
+                                            <div style="font-size: 13px;">Map data ©2019 Google</div><button
+                                                draggable="false" title="Close" aria-label="Close" type="button"
+                                                class="gm-ui-hover-effect"
+                                                style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; position: absolute; cursor: pointer; user-select: none; top: 0px; right: 0px; width: 37px; height: 37px;"><img
+                                                    src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23000000%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                    style="pointer-events: none; display: block; width: 13px; height: 13px; margin: 12px;"></button>
+                                        </div>
+                                        <div class="gmnoprint"
+                                            style="z-index: 1000001; position: absolute; right: 71px; bottom: 0px; width: 55px;">
+                                            <div draggable="false" class="gm-style-cc"
+                                                style="user-select: none; height: 14px; line-height: 14px;">
+                                                <div
+                                                    style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                                    <div style="width: 1px;"></div>
+                                                    <div
+                                                        style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;">
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                                                    <a style="text-decoration: none; cursor: pointer;">Map Data</a><span
+                                                        style="display: none;">Map data ©2019 Google</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;">
+                                            <div
+                                                style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">
+                                                Map data ©2019 Google</div>
+                                        </div>
+                                        <div class="gmnoprint gm-style-cc" draggable="false"
+                                            style="z-index: 1000001; user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;">
+                                            <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                                <div style="width: 1px;"></div>
+                                                <div
+                                                    style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;">
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                                                <a href="https://www.google.com/intl/en-US_US/help/terms_maps.html"
+                                                    target="_blank" rel="noopener"
+                                                    style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Terms
+                                                    of Use</a></div>
+                                        </div><button draggable="false" title="Toggle fullscreen view"
+                                            aria-label="Toggle fullscreen view" type="button"
+                                            class="gm-control-active gm-fullscreen-control"
+                                            style="background: none rgb(255, 255, 255); border: 0px; margin: 10px; padding: 0px; position: absolute; cursor: pointer; user-select: none; border-radius: 2px; height: 40px; width: 40px; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; overflow: hidden; top: 0px; right: 0px;"><img
+                                                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%20018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%2C0v2v4h2V2h4V0H2H0z%20M16%2C0h-4v2h4v4h2V2V0H16z%20M16%2C16h-4v2h4h2v-2v-4h-2V16z%20M2%2C12H0v4v2h2h4v-2H2V12z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                style="height: 18px; width: 18px;"><img
+                                                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%2C0v2v4h2V2h4V0H2H0z%20M16%2C0h-4v2h4v4h2V2V0H16z%20M16%2C16h-4v2h4h2v-2v-4h-2V16z%20M2%2C12H0v4v2h2h4v-2H2V12z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                style="height: 18px; width: 18px;"><img
+                                                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%2C0v2v4h2V2h4V0H2H0z%20M16%2C0h-4v2h4v4h2V2V0H16z%20M16%2C16h-4v2h4h2v-2v-4h-2V16z%20M2%2C12H0v4v2h2h4v-2H2V12z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                style="height: 18px; width: 18px;"></button>
+                                        <div draggable="false" class="gm-style-cc"
+                                            style="user-select: none; height: 14px; line-height: 14px; display: none; position: absolute; right: 0px; bottom: 0px;">
+                                            <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                                <div style="width: 1px;"></div>
+                                                <div
+                                                    style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;">
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                                                <a target="_blank" rel="noopener"
+                                                    title="Report errors in the road map or imagery to Google"
+                                                    href="https://www.google.com/maps/@51.507351,-0.127758,15z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3"
+                                                    style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Report
+                                                    a map error</a></div>
+                                        </div>
+                                        <div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom"
+                                            draggable="false" controlwidth="40" controlheight="81"
+                                            style="margin: 10px; user-select: none; position: absolute; bottom: 95px; right: 40px;">
+                                            <div class="gmnoprint" controlwidth="40" controlheight="81"
+                                                style="position: absolute; left: 0px; top: 0px;">
+                                                <div draggable="false"
+                                                    style="user-select: none; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; background-color: rgb(255, 255, 255); width: 40px; height: 81px;">
+                                                    <button draggable="false" title="Zoom in" aria-label="Zoom in"
+                                                        type="button" class="gm-control-active"
+                                                        style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; position: relative; cursor: pointer; user-select: none; overflow: hidden; width: 40px; height: 40px; top: 0px; left: 0px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2218%2C7%2011%2C7%2011%2C0%207%2C0%207%2C7%200%2C7%200%2C11%207%2C11%207%2C18%2011%2C18%2011%2C11%2018%2C11%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpolygon%20fill%3D%22%23333%22%20points%3D%2218%2C7%2011%2C7%2011%2C0%207%2C0%207%2C7%200%2C7%200%2C11%207%2C11%207%2C18%2011%2C18%2011%2C11%2018%2C11%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpolygon%20fill%3D%22%23111%22%20points%3D%2218%2C7%2011%2C7%2011%2C0%207%2C0%207%2C7%200%2C7%200%2C11%207%2C11%207%2C18%2011%2C18%2011%2C11%2018%2C11%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"></button>
+                                                    <div
+                                                        style="position: relative; overflow: hidden; width: 30px; height: 1px; margin: 0px 5px; background-color: rgb(230, 230, 230); top: 0px;">
+                                                    </div><button draggable="false" title="Zoom out"
+                                                        aria-label="Zoom out" type="button" class="gm-control-active"
+                                                        style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; position: relative; cursor: pointer; user-select: none; overflow: hidden; width: 40px; height: 40px; top: 0px; left: 0px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%2C7h18v4H0V7z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%2C7h18v4H0V7z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%2C7h18v4H0V7z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"></button>
+                                                </div>
+                                            </div>
+                                            <div class="gmnoprint" controlwidth="40" controlheight="40"
+                                                style="display: none; position: absolute;">
+                                                <div style="width: 40px; height: 40px;"><button draggable="false"
+                                                        title="Rotate map 90 degrees" aria-label="Rotate map 90 degrees"
+                                                        type="button" class="gm-control-active"
+                                                        style="background: none rgb(255, 255, 255); display: none; border: 0px; margin: 0px 0px 32px; padding: 0px; position: relative; cursor: pointer; user-select: none; width: 40px; height: 40px; top: 0px; left: 0px; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2222%22%20viewBox%3D%220%200%2024%2022%22%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20fill-rule%3D%22evenodd%22%20d%3D%22M20%2010c0-5.52-4.48-10-10-10s-10%204.48-10%2010v5h5v-5c0-2.76%202.24-5%205-5s5%202.24%205%205v5h-4l6.5%207%206.5-7h-4v-5z%22%20clip-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2222%22%20viewBox%3D%220%200%2024%2022%22%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20fill-rule%3D%22evenodd%22%20d%3D%22M20%2010c0-5.52-4.48-10-10-10s-10%204.48-10%2010v5h5v-5c0-2.76%202.24-5%205-5s5%202.24%205%205v5h-4l6.5%207%206.5-7h-4v-5z%22%20clip-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2222%22%20viewBox%3D%220%200%2024%2022%22%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20fill-rule%3D%22evenodd%22%20d%3D%22M20%2010c0-5.52-4.48-10-10-10s-10%204.48-10%2010v5h5v-5c0-2.76%202.24-5%205-5s5%202.24%205%205v5h-4l6.5%207%206.5-7h-4v-5z%22%20clip-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="height: 18px; width: 18px;"></button><button
+                                                        draggable="false" title="Tilt map" aria-label="Tilt map"
+                                                        type="button" class="gm-tilt gm-control-active"
+                                                        style="background: none rgb(255, 255, 255); display: block; border: 0px; margin: 0px; padding: 0px; position: relative; cursor: pointer; user-select: none; width: 40px; height: 40px; top: 0px; left: 0px; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218px%22%20height%3D%2216px%22%20viewBox%3D%220%200%2018%2016%22%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%2C16h8V9H0V16z%20M10%2C16h8V9h-8V16z%20M0%2C7h8V0H0V7z%20M10%2C0v7h8V0H10z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218px%22%20height%3D%2216px%22%20viewBox%3D%220%200%2018%2016%22%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%2C16h8V9H0V16z%20M10%2C16h8V9h-8V16z%20M0%2C7h8V0H0V7z%20M10%2C0v7h8V0H10z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="width: 18px;"><img
+                                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218px%22%20height%3D%2216px%22%20viewBox%3D%220%200%2018%2016%22%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%2C16h8V9H0V16z%20M10%2C16h8V9h-8V16z%20M0%2C7h8V0H0V7z%20M10%2C0v7h8V0H10z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                                            style="width: 18px;"></button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rate Widget -->
+                    <div class="widget rate">
+                        <!-- Heading -->
+                        <h5 class="widget-header text-center">What would you rate
+                            <br>
+                            this product</h5>
+                        <!-- Rate -->
+                        <div class="starrr"><i class="fa-star-o fa"></i><i class="fa-star-o fa"></i><i
+                                class="fa-star-o fa"></i><i class="fa-star-o fa"></i><i class="fa-star-o fa"></i></div>
+                    </div>
+                    <!-- Safety tips widget -->
+                    <div class="widget disclaimer">
+                        <h5 class="widget-header">Safety Tips</h5>
+                        <ul>
+                            <li>Meet seller at a public place</li>
+                            <li>Check the item before you buy</li>
+                            <li>Pay only after collecting the item</li>
+                            <li>Pay only after collecting the item</li>
+                        </ul>
+                    </div>
+                    <!-- Coupon Widget -->
+                    <div class="widget coupon text-center">
+                        <!-- Coupon description -->
+                        <p>Have a great product to post ? Share it with
+                            your fellow users.
+                        </p>
+                        <!-- Submii button -->
+                        <a href="" class="btn btn-transparent-white">Submit Listing</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Container End -->
+</section>
+
+{% endblock %}

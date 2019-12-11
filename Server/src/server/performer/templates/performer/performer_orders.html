@@ -1,0 +1,95 @@
+{% extends 'base_profile.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block content %}
+
+        <!-- Dashboard Headline -->
+        <div class="dashboard-headline">
+            <!-- <h3>My Active Bids</h3> -->
+
+            <!-- Breadcrumbs -->
+            <nav id="breadcrumbs" class="dark">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li>My Active Bids</li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Row -->
+        <div class="row">
+
+            <!-- Dashboard Box -->
+            <div class="col-xl-12">
+                <div class="dashboard-box margin-top-0">
+
+                    <!-- Headline -->
+                    <div class="headline">
+                        <h3><i class="icon-material-outline-gavel"></i> Мои отклики</h3>
+                    </div>
+
+                    <div class="content">
+                        <ul class="dashboard-box-list">
+                            {% for respond in responds %}
+                            <li>
+                                <!-- Job Listing -->
+                                <div class="job-listing width-adjustment">
+
+                                    <!-- Job Listing Details -->
+                                    <div class="job-listing-details">
+
+                                        <!-- Details -->
+                                        <div class="job-listing-description">
+                                            <h3 class="job-listing-title"><a href="{% url 'order_app:order' respond.order.id %}">{{ respond.order.name }}</a>
+                                                <span
+                                                    class="dashboard-status-button {% order_status_style respond.order.status %}">{{ respond.status }}</span>
+                                            </h3>
+                                            <div class="job-listing-footer">
+                                                <ul>
+                                                    <li><i class="icon-material-outline-date-range"></i> Выполнить до:
+                                                        {{ respond.order.time_end }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Task Details -->
+                                <ul class="dashboard-task-info">
+                                    <li><strong>
+                                        {% if respond.order.is_fixed_price %}
+                                        {{ respond.order.price_high }}$
+                                        {% else %}
+                                        {{ respond.order.price_low }}$ - {{ respond.order.price_high }}$
+                                        {% endif %}
+                                    </strong></li>
+                                    <!-- <li><strong>$40</strong><span>Hourly Rate</span></li> -->
+                                    <!-- <li><strong>2 Days</strong><span>Delivery Time</span></li> -->
+                                </ul>
+
+                                <!-- Job Listing Footer -->
+
+
+                                <!-- Buttons -->
+                                <!-- <div class="buttons-to-right always-visible">
+                                    <a href="#small-dialog" class="popup-with-zoom-anim button dark ripple-effect ico"
+                                        title="Edit Bid" data-tippy-placement="top"><i
+                                            class="icon-feather-edit"></i></a>
+                                    <a href="#" class="button red ripple-effect ico" title="Cancel Bid"
+                                        data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+                                </div> -->
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Row / End -->
+    <script>
+  $("#order_response_menu").toggleClass("active");
+    </script>
+{% endblock %}

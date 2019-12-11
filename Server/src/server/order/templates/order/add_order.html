@@ -1,0 +1,334 @@
+{% extends 'base_profile.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.js"></script>
+
+<script>
+    var csrf = '{{ csrf_token }}';
+</script>
+
+<script src="{% static 'location/js/location.js' %}"></script>
+<script src="{% static 'order/js/main.js' %}"></script>
+<script src="{% static 'order/js/add_order.js' %}"></script>
+
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+    <h3>Заполните форму</h3>
+
+    <!-- Breadcrumbs -->
+    <nav id="breadcrumbs" class="dark">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li>Post a Job</li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Row -->
+<div class="row">
+    <form enctype="multipart/form-data" method="POST" id="formid">
+        {% csrf_token %}
+        <!-- Dashboard Box -->
+        <div class="col-xl-12">
+            <div class="dashboard-box margin-top-0">
+
+                <!-- Headline -->
+                <!-- <div class="headline">
+                    <h3><i class="icon-feather-folder-plus"> Форма создания заказа</i></h3>
+                </div> -->
+
+                <div class="content with-padding padding-bottom-10">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="submit-field">
+                                <h5>{{ simple_order_form.category.label }}</h5>
+                                {{ simple_order_form.category }}
+                            </div>
+                        </div>
+
+                        <div id="subcategories-main-div" class="col-xl-6">
+                            <div class="submit-field">
+                                <h5>{{ simple_order_form.subcategory.label }}</h5>
+                                {{ simple_order_form.subcategory }}
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <h5>{{ simple_order_form.name.label }}</h5>
+                                {{ simple_order_form.name }}
+                                <!-- <input type="text" class="with-border"> -->
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <h5>{{ simple_order_form.description.label }}</h5>
+                                {{ simple_order_form.description }}
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <h5>Дата и время</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="submit-field">
+
+                                        <div class="input-with-icon-left">
+                                            <i class="icon-material-outline-access-time"></i>
+                                            {{ simple_order_form.time_start }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="submit-field">
+                                        <div class="input-with-icon-left">
+                                            <i class="icon-material-outline-access-time"></i>
+                                            {{ simple_order_form.time_end }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <div class="section-headline margin-top-25 margin-bottom-12">
+                                    <h5>Место оказания услуги</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="radio">
+                                            <input id="customer" name="order_location_type" type="radio"
+                                                value="in-customer" checked>
+                                            <label for="customer" class="perform-type-label"><span
+                                                    class="radio-label"></span> У заказчика</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="radio">
+                                            <input id="performer" name="order_location_type" type="radio"
+                                                value="in-performer">
+                                            <label for="performer" class="perform-type-label"><span
+                                                    class="radio-label"></span> У исполнителя</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="radio">
+                                            <input id="remote" name="order_location_type" type="radio"
+                                                value="in-remote">
+                                            <label for="remote" class="perform-type-label"><span
+                                                    class="radio-label"></span> Удаленно</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-4 changing-input-city">
+                            <div class="submit-field">
+                                <h5>{{ simple_order_form.city.label }}</h5>
+                                {{ simple_order_form.city }}
+                            </div>
+                        </div>
+
+                        <div class="col-xl-8 changing-input-address">
+                            <div class="submit-field">
+                                <h5>{{ simple_order_form.location.label }}</h5>
+                                {{ simple_order_form.location }}
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-md-12">
+                            <div class="submit-field">
+                                <div class="section-headline margin-top-25 margin-bottom-35">
+                                    <h5>Бюджет</h5>
+                                </div>
+
+                                <input class="range-slider" type="text" value="10,250" data-slider-currency="$"
+                                    data-slider-min="10" data-slider-max="250" data-slider-step="5"
+                                    data-slider-value="[10,250]" data-value="10,250" style="display: none;">
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <div class="row">
+                                    <div class="col-xl-4" style="text-align: center;line-height: 50px">
+                                        или укажите примерную стоимость
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="submit-field">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="input-with-icon price">
+                                                        <input type="text" name="price"
+                                                            class="input input border p-3 w-100 my-2"
+                                                            autocomplete="off">
+                                                        <i class="currency">USD</i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <div class="section-headline margin-top-25 margin-bottom-12">
+                                    <h5>Форма оплаты</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="radio">
+                                            <input id="after" name="payment" type="radio" value="postpaid" checked>
+                                            <label for="after" class="payment-type-label"><span
+                                                    class="radio-label"></span> По факту выполненных работ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="radio">
+                                            <input id="before" name="payment" type="radio" value="prepaid">
+                                            <label for="before" class="payment-type-label"><span
+                                                    class="radio-label"></span> Предоплата</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 after-payment-type">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="radio">
+                                        <input id="after-cash" name="after_payment" type="radio" value="after-cash"
+                                            checked>
+                                        <label for="after-cash" class="after-payment-type-label"><span
+                                                class="radio-label"></span> Наличными</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="radio">
+                                        <input id="after-bank" name="after_payment" type="radio" value="after-bank">
+                                        <label for="after-bank" class="after-payment-type-label"><span
+                                                class="radio-label"></span> Банковский перевод</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <div class="uploadButton margin-top-30">
+                                    <input class="uploadButton-input" type="file" accept="image/*, application/pdf"
+                                        id="upload" multiple />
+                                    <label class="uploadButton-button ripple-effect" for="upload">Upload
+                                        Files</label>
+                                    <span class="uploadButton-file-name">Images or documents that might be
+                                        helpful
+                                        in describing your job</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" value="{{ uuid }}" name="uuid">
+        <input type="hidden" name="lat" id="lat">
+        <input type="hidden" name="lon" id="lon">
+        <input type="hidden" name="is_fixed_price">
+        <input type="hidden" name="price_low">
+        <input type="hidden" name="price_high">
+
+        <!-- <input id="loc" type="text" />
+        <div class="col-xl-6 col-md-6">
+            <div class="section-headline margin-top-45 margin-bottom-12">
+                <h5>Live Search</h5>
+            </div>
+
+            <select class="selectpicker" data-live-search="true" id="app">
+                <option>Burger, Shake and a Smile</option>
+            </select>
+        </div>
+        <a href="#" id="gg">gg</a> -->
+
+        <div class="col-xl-12">
+            <input type="submit" id="submit-form" class="button ripple-effect big margin-top-30" value="Создать">
+            </input>
+            <!-- <a href="#" class="button ripple-effect big margin-top-30"><i class="icon-feather-plus"></i> Post a
+                        Job</a> -->
+        </div>
+
+    </form>
+
+</div>
+<!-- Row / End -->
+<!-- <div style="text-align: center">
+            <h3>Галерея заказа</h3>
+        </div>
+
+        <div class="container">
+            <div class="row my-4">
+                <div class="col">
+                    <div class="jumbotron">
+                        <form action="/file-upload" method="post" action="/upload" class="dropzone dz-clickable"
+                            id="upload-widget">
+                            {% csrf_token %}
+                            <div class="fallback">
+                                <input name="file" type="file" />
+                            </div>
+                            <div class="dz-message d-flex flex-column">
+                                <i class="material-icons text-muted">cloud_upload</i>
+                                Drag &amp; Drop here or click
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+<script src="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+<script>
+    Dropzone.options.uploadWidget = {
+        paramName: 'file',
+        maxFilesize: 5, // MB
+        dictDefaultMessage: 'Drag an image here to upload, or click to select one',
+        init: function () {
+            this.on("drop", function (file) { });
+        },
+        sending: function (hz, xhr, formData) {
+            formData.append("uuid", "{{uuid}}")
+        },
+        success: function (hz, response) {
+            // alert(response)
+        },
+        url: "{% url 'order_app:upload_gallery_photo' %}"
+    }
+</script>
+<!-- Dashboard Content / End -->
+{% endblock %}

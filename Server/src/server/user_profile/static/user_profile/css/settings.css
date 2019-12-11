@@ -1,0 +1,45 @@
+#location_error{
+    display: none;
+    margin-top:-10px;
+    color:red;
+}
+#basic_settings_form_button:disabled{
+    background-color:grey;
+}
+#add_category_button {
+    background-color: green;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+button.remove_category_button {
+    background-color: red;
+    margin-bottom: 1rem;
+}
+
+@media(min-width: 992px) {
+    button.remove_category_button {
+        top: 35%;
+    }
+    .switch-block{
+    position: relative;
+}
+.switches-list{
+    position: absolute;
+   top: 55%;
+   transform: translate(0, -50%);
+}
+
+}
+
+.non-visible-category{
+    display: none;
+}
+
+input.input-price-disabled{
+    background-color: lightgray;
+}
+
+.error-message {
+    font-size: 15px;
+    color:red;
+}

@@ -1,0 +1,252 @@
+{% extends "base_profile.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'user_profile/css/settings.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css"
+	    integrity="sha256-n3ci71vDbbK59GUg1tuo+c3KO7+pnBOzt7BDmOe87s4=" crossorigin="anonymous" />
+     <link rel="stylesheet" href="{% static 'css/L.Control.Geonames.css' %}"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"
+	    integrity="sha256-KgOC04qt96w+EFba7KuNt9sT+ahJua25I0I2rrkZHFo=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.js"></script>
+    <script src="{% static 'location/js/location.js' %}"></script>
+    <script src="{% static 'user_profile/js/settings.js' %}"></script>
+
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+	<h3>Базовые настройки</h3>
+
+	<!-- Breadcrumbs -->
+	<nav id="breadcrumbs" class="dark">
+		<ul>
+			<li><a href="{% url 'index' %}">Главная страница</a></li>
+			<li><a href="{% url 'user_profile_app:profile' %}">Профиль</a></li>
+			<li><a href="#">Настройки</a></li>
+            <li>Основные настройки</li>
+		</ul>
+	</nav>
+</div>
+
+<!-- Row -->
+<div class="row">
+	<!-- Dashboard Box -->
+	<div class="col-xl-12">
+		<div class="dashboard-box margin-top-0">
+
+			<!-- Headline -->
+			<div class="headline">
+				<h3><i class="icon-material-outline-account-circle"></i> Аккаунт</h3>
+			</div>
+			<form action="{% url 'user_profile_app:basic_settings' %}" id="basic_settings_form" method="post"
+				enctype="multipart/form-data">
+				{% csrf_token %}
+                    {{ base_settings_form.lat }}
+                    {{ base_settings_form.lon }}
+				<div class="content with-padding padding-bottom-0">
+
+					<div class="row">
+
+						<div class="col-auto">
+							<div class="avatar-wrapper" data-tippy-placement="bottom" title="Фото профиля">
+								<img class="profile-pic" src="{{ user.profile.profile_picture.url }}" alt="" />
+								<div class="upload-button"></div>
+								{{ base_settings_form.profile_picture }}
+							</div>
+						</div>
+
+						<div class="col-sm-12 col-md-10">
+							<div class="row">
+                                {% if user.isFirm %}
+                                    <div class="col-xl-6">
+                                        <div class="submit-field">
+                                            <h5>{{base_settings_form.name.label}}</h5>
+                                            {{ base_settings_form.name }}
+                                        </div>
+								    </div>
+                                {% else %}
+                                     <div class="col-xl-6">
+                                        <div class="submit-field">
+                                            <h5>{{base_settings_form.first_name.label}}</h5>
+                                            {{ base_settings_form.first_name }}
+                                        </div>
+								    </div>
+                                     <div class="col-xl-6">
+                                        <div class="submit-field">
+                                            <h5>{{base_settings_form.last_name.label}}</h5>
+                                            {{ base_settings_form.last_name }}
+                                        </div>
+								    </div>
+                                {% endif %}
+
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ base_settings_form.city.label }}</h5>
+										{{ base_settings_form.city }}
+                                        {% if  base_settings_form.city.error_messages%}
+                                            <h6>{{ base_settings_form.city.error_messages }}</h6>
+                                        {% endif %}
+									</div>
+								</div>
+
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ base_settings_form.location.label }}</h5>
+										{{ base_settings_form.location }}
+                                        <h6 id="location_error">Некорректный адрес</h6>
+									</div>
+								</div>
+                                {% if user.isFirm %}
+                               	<div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ base_settings_form.employee_count.label }}</h5>
+										{{ base_settings_form.employee_count }}
+									</div>
+								</div>
+
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ base_settings_form.website.label }}</h5>
+										{{ base_settings_form.website }}
+									</div>
+								</div>
+                                {% else %}
+                                <div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ base_settings_form.gender.label }}</h5>
+										<div class="account-type">
+											<div>
+												{{ base_settings_form.gender }}
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xl-6">
+									<div class="submit-field">
+										<h5>{{ base_settings_form.birth_date.label }}</h5>
+										{{ base_settings_form.birth_date }}
+									</div>
+								</div>
+                                {% endif %}
+								<div class="col-xl-12">
+									<div class="submit-field">
+										<h5>{{ base_settings_form.about.label }}</h5>
+										{{ base_settings_form.about }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Button -->
+	<div class="col-xl-12">
+		<button type="submit" form="basic_settings_form" id="basic_settings_form_button"
+			class="button ripple-effect big margin-top-30">Сохранить</button>
+	</div>
+
+{% if user.isPerformer %}
+    <hr>
+	<div class="col-xl-12">
+		<div class="dashboard-box margin-top-0">
+
+			<!-- Headline -->
+			<div class="headline">
+				<h3><i class="icon-material-outline-account-circle"></i> Настройки исполнителя</h3>
+			</div>
+			<form action="{% url 'user_profile_app:basic_settings_performer' %}" id="basic_settings_performer_form" method="post">
+				{% csrf_token %}
+				<div class="content with-padding padding-bottom-0">
+					<div class="row">
+                        <div class="col-sm-12">
+							<div class="row">
+                                {% for sub_category,price,is_negotiated,hidden,i in basic_settings_performer_form.get_sub_categories %}
+                                     <div class="col-xl-4 non-visible-category" data-category-number="{{ i }}">
+									<div class="submit-field">
+										<h5>{{ sub_category.label }}</h5>
+										{{ sub_category }}
+									</div>
+								</div>
+                                <div class="col-xl-3 non-visible-category" data-category-number="{{ i }}">
+									<div class="submit-field">
+										<h5>{{ price.label }} (грн)</h5>
+                                        {{ price }}
+									</div>
+								</div>
+                                <div class="col-xl-3 non-visible-category switch-block" data-category-number="{{ i }}">
+
+                                  <div class="switches-list">
+                                        <div class="switch-container">
+                                            <label class="switch">{{ is_negotiated }}<span class="switch-button"></span>{{ is_negotiated.label }}</label>
+                                        </div>
+                                  </div>
+                                </div>
+                                <div class="col-xl-2 non-visible-category" data-category-number="{{ i }}">
+                                    <button type="button" data-category-number="{{ i }}" class="button ripple-effect remove_category_button" data-tippy-placement="top" title="Удалить категорию"><i class="icon-feather-x-circle"></i></button>
+                                </div>
+                                   {{ hidden }}
+                                {% endfor %}
+							</div>
+						</div>
+
+					</div>
+                    <button type="button" class="button ripple-effect" id="add_category_button">Добавить категорию <i class="icon-material-outline-add-circle-outline"></i></button>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="submit-field">
+                                        <h5>{{ basic_settings_performer_form.languages.label }}</h5>
+                                        {{ basic_settings_performer_form.languages }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="submit-field">
+                                        <h5>{{ basic_settings_performer_form.education_type.label }}</h5>
+                                        {{ basic_settings_performer_form.education_type }}
+                                    </div>
+                                </div>
+                                 <div class="col-xl-6">
+                                    <div class="submit-field">
+                                        <h5>{{ basic_settings_performer_form.educational_institution_name.label }}</h5>
+                                        {{ basic_settings_performer_form.educational_institution_name }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Button -->
+	<div class="col-xl-12">
+		<button type="submit" form="basic_settings_performer_form" id="basic_settings_performer_form_button"
+			class="button ripple-effect big margin-top-30">Сохранить</button>
+	</div>
+{% endif %}
+</div>
+
+<!-- Row / End -->
+    <script>
+    {% if is_settings_changed %}
+        Snackbar.show({
+                text: 'Ваши настройки были изменены!',
+                pos: 'bottom-center',
+                showAction: false,
+                actionText: "Dismiss",
+                duration: 3000,
+                textColor: '#fff',
+                backgroundColor: '#383838'
+            });
+    {% endif %}
+</script>
+{% endblock %}
+

@@ -1,0 +1,34 @@
+[
+    {
+        "model": "order.orderstatus",
+        "pk": 1,
+        "fields": {
+            "name": "Поиск исполнителя",
+            "value": "active"
+        }
+    },
+    {
+        "model": "order.orderstatus",
+        "pk": 2,
+        "fields": {
+            "name": "Выполняется",
+            "value": "processing"
+        }
+    },
+    {
+        "model": "order.orderstatus",
+        "pk": 3,
+        "fields": {
+            "name": "Выполнен",
+            "value": "done"
+        }
+    },
+    {
+        "model": "order.orderstatus",
+        "pk": 4,
+        "fields": {
+            "name": "Отменен заказчиком",
+            "value": "canceled"
+        }
+    }
+]

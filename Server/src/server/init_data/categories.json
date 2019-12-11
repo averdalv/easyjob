@@ -1,0 +1,82 @@
+[
+    {
+        "model": "order.category",
+        "pk": 1,
+        "fields": {
+            "name": "Репетиторы и обучение",
+            "value": "repetitory-i-obuchenie"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 2,
+        "fields": {
+            "name": "Ремонт и строительство",
+            "value": "remont-i-stroitelstvo"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 3,
+        "fields": {
+            "name": "Автоинструкторы",
+            "value": "avtoinstruktory"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 4,
+        "fields": {
+            "name": "Логопеды",
+            "value": "logopedy"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 5,
+        "fields": {
+            "name": "Заправка кондиционеров",
+            "value": "zapravka-kondicionerov"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 6,
+        "fields": {
+            "name": "Курьерские услуги",
+            "value": "kurerskie-uslugi"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 7,
+        "fields": {
+            "name": "Уход за животными",
+            "value": "uhod-za-zhivotnymi"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 8,
+        "fields": {
+            "name": "Услуги сиделки",
+            "value": "uslugi-sidelki"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 9,
+        "fields": {
+            "name": "Ремонт обуви",
+            "value": "remont-obuvi"
+        }
+    },
+    {
+        "model": "order.category",
+        "pk": 10,
+        "fields": {
+            "name": "Няня",
+            "value": "njanja"
+        }
+    }
+]

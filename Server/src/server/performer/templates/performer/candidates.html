@@ -1,0 +1,130 @@
+{% extends 'base_profile.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block content %}
+
+        <!-- Dashboard Headline -->
+        <div class="dashboard-headline">
+            <h3>Manage Candidates</h3>
+            <span class="margin-top-7">Job Applications for <a href="#">{{ order.name }}</a></span>
+
+            <!-- Breadcrumbs -->
+            <nav id="breadcrumbs" class="dark">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li>Manage Candidates</li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Row -->
+        <div class="row">
+
+            <!-- Dashboard Box -->
+            <div class="col-xl-12">
+                <div class="dashboard-box margin-top-0">
+
+                    <!-- Headline -->
+                    <div class="headline">
+                        <h3><i class="icon-material-outline-supervisor-account"></i>Кандидатов:
+                            {{ performers|length }} </h3>
+                    </div>
+
+                    {% is_active order as active %}
+
+                    <div class="content">
+                        <ul class="dashboard-box-list">
+                            {% for performer in performers %}
+                            <li>
+                                <!-- Overview -->
+                                <div class="freelancer-overview manage-candidates">
+                                    <div style="display:flex;justify-content:flex-start">
+                                        <div class="freelancer-overview-inner">
+
+                                            <!-- Avatar -->
+                                            <div class="freelancer-avatar">
+                                                <div class="verified-badge"></div>
+                                                <a href="#"><img src="{{ performer.user.profile.profile_picture.url }}"
+                                                        alt=""></a>
+                                            </div>
+
+                                            <!-- Name -->
+                                            <div class="freelancer-name">
+                                                <h4><a href="#">{{ performer.user.first_name }}
+                                                        {{ performer.user.last_name }}</a></h4>
+
+                                                <!-- Details -->
+                                                <!-- <span class="freelancer-detail-item"><a href="#"><i
+                                                                class="icon-feather-mail"></i>
+                                                            sindy@example.com</a></span> -->
+                                                <span class="freelancer-detail-item"><i class="icon-feather-phone"></i>
+                                                    {{ performer.user.profile.phone_number}}</span>
+
+                                                <!-- Rating -->
+                                                <div class="freelancer-rating">
+                                                    <div class="star-rating" data-rating="5.0"><span
+                                                            class="star"></span><span class="star"></span><span
+                                                            class="star"></span><span class="star"></span><span
+                                                            class="star"></span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Buttons -->
+                                                <div
+                                                    class="buttons-to-right always-visible margin-top-25 margin-bottom-5">
+                                                    {% if active %}
+                                                    <a id="{{ performer.id }}" href="#"
+                                                        class="confirm button ripple-effect"><i
+                                                            class="icon-feather-file-text"></i>
+                                                        Подтвердить</a>
+                                                    {% endif %}
+                                                    <a href="{% url 'chat_app:chat' %}?user_id={{ performer.user.id }}"
+                                                        class="button dark ripple-effect"><i
+                                                            class="icon-feather-mail"></i> Начать
+                                                        общение</a>
+                                                    <!-- <a href="#" class="button gray ripple-effect ico"
+                                                        data-tippy-placement="top" data-tippy=""
+                                                        data-original-title="Remove Candidate"><i
+                                                            class="icon-feather-trash-2"></i></a> -->
+
+                                                </div>
+                                            </div>
+                                            <div style="vertical-align: top; padding: 20px">
+                                                <!--Message-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Row / End -->
+
+
+<script>
+    $(".confirm").on("click", function (e) {
+        var csrf = '{{ csrf_token }}';
+        $.ajax({
+            type: "POST",
+            url: "{% url 'order_app:confirm' %}",
+            data: {
+                csrfmiddlewaretoken: csrf,
+                'performer_id': $(this).attr('id'),
+                'order_id': "{{ order.id }}"
+            },
+            success: function (data) {
+                window.location.replace("{% url 'user_profile_app:profile' %}")
+            }
+        });
+    });
+</script>
+<!-- Dashboard Content / End -->
+{% endblock %}

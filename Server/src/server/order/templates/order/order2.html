@@ -1,0 +1,164 @@
+{% extends 'order/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block body_block %}
+
+<link type="text/css" rel="stylesheet" href="{% static 'order/css/lightslider.css' %}" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{% static 'order/js/lightslider.js' %}"></script>
+
+<style>
+    .demo {
+        width: 100%;
+        /* height: 10px; */
+    }
+</style>
+
+<!--===================================
+        =            Store Section            =
+        ====================================-->
+<section class="section bg-gray">
+    <!-- Container Start -->
+    <div class="container">
+        <div class="row">
+            <!-- Left sidebar -->
+            <div class="col-md-8">
+                <div class="product-details">
+
+                    <h1 class="product-title">{{order.name}}</h1>
+
+                    <div class="product-meta">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><i class="fa fa-user-o"></i> Заказчик <a
+                                    href="">{{order.customer.user}}</a></li>
+                            <li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Категория <a
+                                    href="">{{order.category}}</a></li>
+                            <!-- <li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">Dhaka
+                                    Bangladesh</a></li> -->
+                        </ul>
+                    </div>
+
+                    <div class="content mt-2 pt-2">
+                        <ul class="nav nav-pills  justify-content-center">
+                            <div class="widget price text-center nav-item">
+                                <p>{{order.price}} грн. </p>
+                            </div>
+                            <div class="widget price text-center nav-item">
+                                <h4>Сделка без риска</h4>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="tab-title">Заказ</h3>
+                        <table class="table table-bordered product-table">
+                            <tbody>
+                                <tr>
+                                    <td>Создан</td>
+                                    <td>{{order.time_created}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Выполнить до</td>
+                                    <td>{{order.time_end}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <div class="tab-pane">
+                            <h3 class="tab-title">Описание заказа</h3>
+                            <p>{{order.description}}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="tab-pane">
+                            <h3 class="tab-title">Галерея заказа</h3>
+                            <div class="container ">
+                                <div class="demo">
+                                    <ul id="lightSlider">
+                                        {% for image in galleryImages %}
+
+                                        <li data-thumb="{{image.thumb.url}}">
+                                            <img src="{{image.image.url}}"
+                                                style="display: block; margin-left: auto; margin-right: auto;width: 100%;" />
+                                        </li>
+
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if order.customer.user != user and user.isPerformer  %}
+                        {% is_respond_tag user order as respond %}
+                        {% if respond %}
+                        <input class="btn btn-offer d-inline-block btn-success ml-n1 my-1 px-lg-4 px-md-3"
+                            type="submit" value="Вы откликнулись" disabled>
+                        {% else %}
+                            <form action="{% url 'order_app:respond' %}" enctype="multipart/form-data" method="POST">
+                                <div>
+                                    <div class="tab-pane">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ order.id }}" name="id">
+                                        <input class="btn btn-offer d-inline-block btn-success ml-n1 my-1 px-lg-4 px-md-3"
+                                            type="submit" value="Откликнуться">
+                                    </div>
+                                </div>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <!-- User Profile widget -->
+                    <div class="widget user text-center">
+
+                        {% if order.customer.user.profile.profile_picture %}
+                        <img class="rounded-circle img-fluid mb-5 px-5"
+                            src="{{order.customer.user.profile.profile_picture.url}}" alt="">
+                        {% else %}
+                        <img class="rounded-circle img-fluid mb-5 px-5"
+                            src="{% static  'images/user/anonymous-user.png'%}" alt="">
+                        {% endif %}
+
+                        <h4><a href="">{{order.customer.user}}</a></h4>
+                        <p class="member-time">Зарегистрирован {{ order.customer.user.date_joined }}</p>
+                        <a href="">Все заказы</a>
+                        <ul class="list-inline mt-20">
+                            {% if order.customer.user == user %}
+                            <a href="">(Вы)</a>
+                            {% else %}
+                            <li class="list-inline-item"><a href="/chat?user_id={{ order.customer.user.id }}"
+                                    class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Связаться</a>
+                            </li>
+                            {% endif %}
+                            <!-- <li class="list-inline-item"><a href=""
+                                    class="btn btn-offer d-inline-block btn-success ml-n1 my-1 px-lg-4 px-md-3">Откликнуться</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Container End -->
+</section>
+
+<!--http://sachinchoolur.github.io/lightslider/-->
+<script>
+    $('#lightSlider').lightSlider({
+        gallery: true,
+        item: 1,
+        thumbItem: 9,
+        autoWidth: false,
+        adaptiveHeight: false
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base_profile.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block content %}
+
+
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+    <!-- <h3>Manage Jobs</h3> -->
+
+    <!-- Breadcrumbs -->
+    <nav id="breadcrumbs" class="dark">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li>Manage Jobs</li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Row -->
+<div class="row">
+
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+        <div class="dashboard-box margin-top-0">
+
+            <!-- Headline -->
+            <div class="headline">
+                <h3><i class="icon-material-outline-business-center"></i> Мои заказы</h3>
+            </div>
+
+            <div class="content">
+                <ul class="dashboard-box-list">
+
+                    {% for order in orders %}
+                    <li>
+                        <!-- Job Listing -->
+                        <div class="job-listing">
+
+                            <!-- Job Listing Details -->
+                            <div class="job-listing-details">
+
+                                <!-- Details -->
+                                <div class="job-listing-description">
+                                    <h3 class="job-listing-title"><a
+                                            href="{% url 'order_app:order' order.id %}">{{ order.name }}</a>
+                                        <span
+                                            class="dashboard-status-button {% order_status_style order.status %}">{{ order.status }}</span>
+                                    </h3>
+
+
+                                    <!-- Job Listing Footer -->
+                                    <div class="job-listing-footer">
+                                        <ul>
+                                            <li><i class="icon-material-outline-date-range"></i>Создан:
+                                                {{ order.time_created }}</li>
+                                            <li><i class="icon-material-outline-date-range"></i> Начать задание:
+                                                {{ order.time_start }}</li>
+                                            <li><i class="icon-material-outline-date-range"></i> Выполнить до:
+                                                {{ order.time_end }}</li>
+                                        </ul>
+
+                                        {% if order.performer %}
+                                        <p>
+                                            <mark>Исполнитель:</mark>
+                                            <a href="#">{{ order.performer.user }}</a>
+                                        </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% responds_tag order as responds %}
+                        <!-- Buttons -->
+                        <div class="buttons-to-right always-visible">
+                            <a href="{% url 'performer_app:candidates' %}?id={{ order.id }}"
+                                class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i>
+                                Смотреть кандидатов
+                                <span class="button-info">{{ responds }}</span></a>
+
+
+                            {% new_responds_tag order as new_responds %}
+                            {% if new_responds > 0 %}
+                            <a href="#" class="button gray">Новых кандидатов: {{ new_responds }}</a>
+                            {% endif %}
+                            <!-- <a href="#" class="button gray ripple-effect ico" title="Remove"
+                                        data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a> -->
+                        </div>
+                    </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Row / End -->
+
+<script>
+    $("#orders_menu").toggleClass("active");
+</script>
+<!-- Dashboard Content / End -->
+{% endblock %}

@@ -1,0 +1,18 @@
+[
+    {
+        "model": "order.payment",
+        "pk": 1,
+        "fields": {
+            "name": "По факту выполненных работ",
+            "value": "postpaid"
+        }
+    },
+    {
+        "model": "order.payment",
+        "pk": 2,
+        "fields": {
+            "name": "Предоплата",
+            "value": "prepaid"
+        }
+    }
+]

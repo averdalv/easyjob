@@ -1,0 +1,300 @@
+{% extends 'chat/base.html' %}
+{% load notifications_custom_tags %}
+{% load static %}
+{% block content %}
+<style>
+    .nav-tag {
+        display: inline-block;
+        font-weight: 700;
+        height: 19px;
+        width: 19px;
+        line-height: 19px;
+        text-align: center;
+        color: #fff;
+        font-size: 11px;
+        background-color: blue;
+        border-radius: 50%;
+        position: relative;
+        margin: 0 0 0 4px;
+        top: -2px;
+    }
+</style>
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+    <h3>Messages</h3>
+
+    <!-- Breadcrumbs -->
+    <nav id="breadcrumbs" class="dark">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li>Messages</li>
+        </ul>
+    </nav>
+</div>
+
+<div class="messages-container margin-top-0">
+
+    <div class="messages-container-inner">
+
+        <!-- Messages -->
+        <div class="messages-inbox">
+            <div class="messages-headline">
+                <div class="input-with-icon">
+                    <input type="text" placeholder="Поиск" id="search-dialogues">
+                    <i class="icon-material-outline-search"></i>
+                </div>
+            </div>
+
+            <ul class="messages-ul">
+                {% for dialogue in dialogues %}
+                <li {% if dialogue.id == active_id %}class="active-message" {% endif %}>
+                    <a href="{{ dialogue.get_absolute_url }}">
+                        <div class="message-avatar"><i
+                                class="status-icon {% if dialogue.user_to.profile.online %}status-online{% else %}status-offline{% endif %}"></i><img
+                                src="{{ dialogue.user_to.profile.profile_picture.url }}" alt="" /></div>
+                        <div class="message-by">
+                            <div class="message-by-headline">
+                                <h5 class="dialogue-name">{{ dialogue.user_to.get_name }}</h5>
+                                <span>
+
+                                    {% if dialogue.is_today %}
+                                    {{ dialogue.date_last_message|date:"H:i"}}
+                                    {% elif dialogue.is_yesterday %}
+                                    Вчера
+                                    {% else %}
+                                    {{ dialogue.date_last_message|date:"d M"}}
+                                    {% endif %}
+                                </span>
+
+                            </div>
+                            <p>{{ dialogue.last_message }}</p>
+                            {% if dialogue.count_unread_messages > 0 and dialogue.id != active_id%}
+                                <span class="nav-tag">{{dialogue.count_unread_messages  }}</span>
+                            {% endif %}
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- Messages / End -->
+
+        <!-- Message Content -->
+        <div class="message-content">
+
+            <div class="messages-headline">
+                <a href="#" class="message-action"><i class="icon-feather-trash-2"></i> Delete Conversation</a>
+            </div>
+
+            <!-- Message Content Inner -->
+            <div class="message-content-inner">
+
+                {% for message in messages %}
+                {% if message.is_today %}
+                <div class="message-time-sign">
+                    <span>{{ message.date|date:"H:i" }}</span>
+                </div>
+                {% endif %}
+                {% if message.is_yesterday %}
+                <div class="message-time-sign">
+                    <span>Вчера</span>
+                </div>
+                {% endif %}
+                <div class="message-bubble {% if message.message_from == user %}me{% endif %}">
+                    <div class="message-bubble-inner">
+                        <div class="message-avatar"><img src="{{ message.message_from.profile.profile_picture.url }}"
+                                alt="" /></div>
+                        <div class="message-text">
+                            <p>{{ message.text }}</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <!-- Message Content Inner / End -->
+
+            <!-- Reply Area -->
+            <div class="message-reply">
+                <textarea cols="1" rows="1" placeholder="" id="input_message"></textarea>
+                <button id="send_message" class="button ripple-effect">Отправить</button>
+            </div>
+
+        </div>
+        <!-- Message Content -->
+
+    </div>
+</div>
+<!-- Messages Container / End -->
+
+<script>
+    function formatDate(date) {
+        var hours = date.getHours(),
+            minutes = date.getMinutes();
+        minuteFormatted = minutes < 10 ? "0" + minutes : minutes;
+        hoursFormatted = hours < 10 ? "0" + hours : hours;
+        return hoursFormatted + ":" + minuteFormatted;
+    }
+
+    function scrollDown() {
+        var objDiv = document.querySelector(".message-content-inner");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    function new_message_sound() {
+        var aSound = document.createElement('audio');
+        aSound.setAttribute('src', "{% static 'audio/new_message.mp3' %}");
+        aSound.play();
+    }
+    $(document).ready(function () {
+        scrollDown();
+
+        $("#send_message").on("click", function (e) {
+            e.preventDefault();
+            var message = $("#input_message").val()
+            data = {
+                from: {{ user.id }},
+                to: {{ user_to_id }},
+                message: message,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            };
+            $.ajax({
+                type: "POST",
+                url: "{% url 'chat_app:send_message' %}",
+                dataType: "json",
+                data: data,
+                success: function (data) {
+                    $.each(data, function (field) {
+                        date = data[field]['date']
+                        var block = "<div class=\"message-time-sign\">\n" +
+                            "<span>" + date + "</span>\n" +
+                            "</div>\n" +
+                            "<div class=\"message-bubble me\">\n" +
+                            "<div class=\"message-bubble-inner\">\n" +
+                            "<div class=\"message-avatar\"><img src=\"{{ user.profile.profile_picture.url }}\" alt=\"\" /></div>\n" +
+                            "<div class=\"message-text\"><p>" + data[field]['text'] + "</p></div>\n" +
+                            "</div>\n" +
+                            "<div class=\"clearfix\"></div>"
+                        $(".message-content-inner").append(block);
+                        var text = data[field]['text']
+                        $(".active-message>a>.message-by>p").text(text);
+                    });
+                    $("#input_message").val("");
+                    scrollDown();
+                    $(".active-message>a>.message-by>.message-by-headline>span").text(formatDate(new Date()))
+                }
+            });
+        });
+
+        if("{{ user_to_id }}" != "None"){
+            setInterval(function () {
+                data = {
+                    from: {{ user.id }},
+                    to: {{ user_to_id }},
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'chat_app:get_messages' %}",
+                    dataType: "json",
+                    data: data,
+                    success: function (data) {
+                        var messages = data["messages"];
+                        var dialogues = data["dialogues"];
+                        if (messages.length > 0) {
+                            new_message_sound();
+                        }
+                        $.each(messages, function (field) {
+                            date = messages[field]['date'];
+                            var block = "<div class=\"message-time-sign\">\n" +
+                                "<span>" + date + "</span>\n" +
+                                "</div>\n" +
+                                "<div class=\"message-bubble\">\n" +
+                                "<div class=\"message-bubble-inner\">\n" +
+                                "<div class=\"message-avatar\"><img src=\"" + messages[field]['img'] + "\" alt=\"\" /></div>\n" +
+                                "<div class=\"message-text\"><p>" + messages[field]['text'] + "</p></div>\n" +
+                                "</div>\n" +
+                                "<div class=\"clearfix\"></div>"
+                            $(".message-content-inner").append(block);
+                            var text = messages[field]['text'];
+                            $(".active-message>a>.message-by>p").text(text);
+                            scrollDown();
+                            $(".active-message>a>.message-by>.message-by-headline>span").text(formatDate(new Date()));
+                        });
+                        $.each(dialogues,function(field){
+                            var href = dialogues[field]['href'];
+                            var count_unread = dialogues[field]['count_unread'];
+                            var date_last_message = dialogues[field]['date_last_message'];
+                            var last_message = dialogues[field]['last_message'];
+                            var profile_picture_url = dialogues[field]['profile_picture_url'];
+                            var name = dialogues[field]['name'];
+                            var div = $("a[href=\'"+href+"\']>.message-by");
+                            if(div.length){
+                                var nav_tag = $("a[href=\'"+href+"\']>.message-by>.nav-tag");
+                                var message_by_headline_span = $("a[href=\'"+href+"\']>.message-by>.message-by-headline>span");
+                                var message_by_p = $("a[href=\'"+href+"\']>div>p");
+                                if(nav_tag.length){
+                                    if(nav_tag.text()!=count_unread){
+                                        nav_tag.text(count_unread);
+                                         message_by_headline_span.text(date_last_message);
+                                        message_by_p.text(last_message);
+                                         new_message_sound();
+                                    }
+
+                                }
+                                else{
+                                    new_message_sound();
+                                     nav_tag.text(count_unread);
+                                         message_by_headline_span.text(date_last_message);
+                                        message_by_p.text(last_message);
+                                    div.append(`<span class="nav-tag">${count_unread}</span>`);
+                                }
+                            }
+                            else{
+                                new_message_sound();
+                                $(".messages-ul").prepend(`
+                                    <li>
+                                        <a href="${href}">
+                                            <div class="message-avatar"><i class="status-icon status-online"></i><img src="${profile_picture_url}" alt=""></div>
+                                            <div class="message-by">
+                                                <div class="message-by-headline">
+                                                    <h5 class="dialogue-name">${name}</h5>
+                                                    <span>${date_last_message}</span>
+
+                                                </div>
+                                                <p>${last_message}</p>
+                                                <span class="nav-tag">${count_unread}</span>
+                                            </div>
+                                        </a>
+                                    </li>`);
+                            }
+                        });
+                    }
+                });
+            }, 1000);
+        }
+        $("#chat_menu").toggleClass("active");
+
+        $('#search-dialogues').keyup(function() {
+            var search_text = $('#search-dialogues').val().toLowerCase();
+            var dialogues = $(".messages-ul>li");
+            for(var i = 0;i<dialogues.length;i++){
+                var name = $(dialogues[i]).find(".dialogue-name").text().toLowerCase();
+                if(!name.includes(search_text)){
+                    $(dialogues[i]).css("display","none");
+                }
+                else{
+                    $(dialogues[i]).css("display","block");
+                }
+            }
+});
+    });
+</script>
+
+<style>
+    .message-content-inner {
+        min-height: 750px;
+    }
+</style>
+{% endblock %}

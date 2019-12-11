@@ -1,0 +1,35 @@
+#vscode
+.vscode
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+profile_pics
+
+# PyBuilder
+target/
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+
+migrations
+
+!__init__.py
+
+.env
+db.sqlite3
+Media
+.idea
+
+!__init__.py

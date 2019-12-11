@@ -1,0 +1,34 @@
+[
+    {
+        "model": "order.orderrespondstatus",
+        "pk": 1,
+        "fields": {
+            "name": "Ожидается подтверждение",
+            "value": "new"
+        }
+    },
+    {
+        "model": "order.orderrespondstatus",
+        "pk": 2,
+        "fields": {
+            "name": "Просмотрен заказчиком",
+            "value": "viewed"
+        }
+    },
+    {
+        "model": "order.orderrespondstatus",
+        "pk": 3,
+        "fields": {
+            "name": "Отклонен заказчиком",
+            "value": "rejected"
+        }
+    },
+    {
+        "model": "order.orderrespondstatus",
+        "pk": 4,
+        "fields": {
+            "name": "Принят заказчиком",
+            "value": "accepted"
+        }
+    }
+]

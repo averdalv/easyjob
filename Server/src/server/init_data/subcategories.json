@@ -1,0 +1,56 @@
+[
+    {
+        "model": "order.subcategory",
+        "pk": 1,
+        "fields": {
+            "name": "Английский язык",
+            "value": "anglijskij-jazyk",
+            "category": 1
+        }
+    },
+    {
+        "model": "order.subcategory",
+        "pk": 2,
+        "fields": {
+            "name": "Испанский язык",
+            "value": "ispanskij-jazyk",
+            "category": 1
+        }
+    },
+    {
+        "model": "order.subcategory",
+        "pk": 3,
+        "fields": {
+            "name": "Китайский язык",
+            "value": "kitajskij-jazyk",
+            "category": 1
+        }
+    },
+    {
+        "model": "order.subcategory",
+        "pk": 4,
+        "fields": {
+            "name": "Мастер на час",
+            "value": "master-na-chas",
+            "category": 2
+        }
+    },
+    {
+        "model": "order.subcategory",
+        "pk": 5,
+        "fields": {
+            "name": "Столяр",
+            "value": "stoljar",
+            "category": 2
+        }
+    },
+    {
+        "model": "order.subcategory",
+        "pk": 6,
+        "fields": {
+            "name": "Слесарь",
+            "value": "slesar",
+            "category": 2
+        }
+    }
+]

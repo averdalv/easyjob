@@ -1,0 +1,19 @@
+source bin/activate
+
+deactivate
+
+python3 manage.py runserver 0:8000
+
+main page localhost:8000/ez
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py create_categories
+python3 manage.py create_statuses
+python3 manage.py create_order_respond_statuses
+
+https://medium.com/@manivannan_data/install-python3-7-in-ubuntu-16-04-dfd9b4f11e5c
+
+systemctl start server.service
+systemctl stop server.service
+systemctl status server.service
