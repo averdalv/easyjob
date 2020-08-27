@@ -33,3 +33,4 @@ Media
 .idea
 
 !__init__.py
+venv/

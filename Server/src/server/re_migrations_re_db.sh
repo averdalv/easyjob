@@ -3,13 +3,18 @@ find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 find . -path "*/migrations/*.pyc"  -delete
 rm -f db.sqlite3
 
-# Create tables
 
-python3 manage.py makemigrations
+python3 manage.py makemigrations authentication
+python3 manage.py makemigrations customer
+python3 manage.py makemigrations performer
+python3 manage.py makemigrations gallery
+python3 manage.py makemigrations order
+python3 manage.py makemigrations location
+python3 manage.py makemigrations chat
+python3 manage.py makemigrations user_profile
+python3 manage.py makemigrations verification
 python3 manage.py createcachetable
 python3 manage.py migrate
-
-# Load init data to db
 
 python3 manage.py loaddata init_data/orderstatus.json
 python3 manage.py loaddata init_data/cities.json
