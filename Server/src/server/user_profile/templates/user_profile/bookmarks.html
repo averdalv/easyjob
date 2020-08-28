@@ -10,9 +10,9 @@
     <!-- Breadcrumbs -->
     <nav id="breadcrumbs" class="dark">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li>Bookmarks</li>
+            <li><a href="{% url 'index' %}">Главная страница</a></li>
+			<li><a href="{% url 'user_profile_app:profile' %}">Профиль</a></li>
+            <li>Закладки</li>
         </ul>
     </nav>
 </div>
@@ -220,7 +220,7 @@
 <div class="dashboard-footer-spacer"></div>
 <div class="small-footer margin-top-15">
     <div class="small-footer-copyrights">
-        © 2019 <strong>Hireo</strong>. All Rights Reserved.
+        © 2020 <strong>EasyJob</strong>
     </div>
     <ul class="footer-social-links">
         <li>

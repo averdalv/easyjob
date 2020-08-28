@@ -40,11 +40,18 @@ class Performer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     education = models.ForeignKey(to=Education,null=True,on_delete=models.SET_NULL)
     languages = models.ManyToManyField(Language)
+    sum_rating = models.FloatField(blank=True,default=0)
+    num_responses = models.IntegerField(default=0,blank=True)
     def __str__(self):
         return str(self.user)
 
     def get_absolute_url(self):
         return reverse("performer_app:performer_page", kwargs={"id": self.id})
+    @property
+    def rating(self):
+        if self.num_responses == 0:
+            return 0
+        return self.sum_rating / self.num_responses
 
 
 

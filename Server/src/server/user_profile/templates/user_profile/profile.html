@@ -2,17 +2,18 @@
 {% load static %}
 {% load custom_tags %}
 {% block content %}
+<script src="{% static 'js/chart.min.js' %}"></script>
 
 			<!-- Dashboard Headline -->
 			<div class="dashboard-headline">
-				<h3>Howdy, Tom!</h3>
-				<span>We are glad to see you again!</span>
+				<h3>Привет {{user.get_name}}</h3>
+				<span>Мы рады видеть тебя снова!</span>
 
 				<!-- Breadcrumbs -->
 				<nav id="breadcrumbs" class="dark">
 					<ul>
-						<li><a href="#">Home</a></li>
-						<li>Dashboard</li>
+						<li><a href="{% url 'index' %}">Главная страница</a></li>
+						<li>Профиль</li>
 					</ul>
 				</nav>
 			</div>
@@ -21,21 +22,21 @@
 			<div class="fun-facts-container">
 				<div class="fun-fact" data-fun-fact-color="#36bd78">
 					<div class="fun-fact-text">
-						<span>Task Bids Won</span>
+						<span>Откликов</span>
 						<h4>22</h4>
 					</div>
 					<div class="fun-fact-icon"><i class="icon-material-outline-gavel"></i></div>
 				</div>
 				<div class="fun-fact" data-fun-fact-color="#b81b7f">
 					<div class="fun-fact-text">
-						<span>Jobs Applied</span>
+						<span>Выполненых заданий</span>
 						<h4>4</h4>
 					</div>
 					<div class="fun-fact-icon"><i class="icon-material-outline-business-center"></i></div>
 				</div>
 				<div class="fun-fact" data-fun-fact-color="#efa80f">
 					<div class="fun-fact-text">
-						<span>Reviews</span>
+						<span>Заявок</span>
 						<h4>28</h4>
 					</div>
 					<div class="fun-fact-icon"><i class="icon-material-outline-rate-review"></i></div>
@@ -44,7 +45,7 @@
 				<!-- Last one has to be hidden below 1600px, sorry :( -->
 				<div class="fun-fact" data-fun-fact-color="#2a41e6">
 					<div class="fun-fact-text">
-						<span>This Month Views</span>
+						<span>Просмотров в этом месяце</span>
 						<h4>987</h4>
 					</div>
 					<div class="fun-fact-icon"><i class="icon-feather-trending-up"></i></div>
@@ -58,12 +59,12 @@
 					<!-- Dashboard Box -->
 					<div class="dashboard-box main-box-in-row">
 						<div class="headline">
-							<h3><i class="icon-feather-bar-chart-2"></i> Your Profile Views</h3>
+							<h3><i class="icon-feather-bar-chart-2"></i> Просмотры вашего профиля</h3>
 							<div class="sort-by">
 								<select class="selectpicker hide-tick">
-									<option>Last 6 Months</option>
-									<option>This Year</option>
-									<option>This Month</option>
+									<option>Последние 6 месяцев</option>
+									<option>В этом году</option>
+									<option>В этом месяце</option>
 								</select>
 							</div>
 						</div>
@@ -84,7 +85,7 @@
 						 and 'child-box-in-row' to the higher box -->
 					<div class="dashboard-box child-box-in-row">
 						<div class="headline">
-							<h3><i class="icon-material-outline-note-add"></i> Notes</h3>
+							<h3><i class="icon-material-outline-note-add"></i> Заметки</h3>
 						</div>
 
 						<div class="content with-padding">
@@ -123,7 +124,7 @@
 							</div>
 						</div>
 							<div class="add-note-button">
-								<a href="#small-dialog" class="popup-with-zoom-anim button full-width button-sliding-icon">Add Note <i class="icon-material-outline-arrow-right-alt"></i></a>
+								<a href="#small-dialog" class="popup-with-zoom-anim button full-width button-sliding-icon">Добавить заметку <i class="icon-material-outline-arrow-right-alt"></i></a>
 							</div>
 					</div>
 					<!-- Dashboard Box / End -->
@@ -138,7 +139,7 @@
 				<div class="col-xl-6">
 					<div class="dashboard-box">
 						<div class="headline">
-							<h3><i class="icon-material-baseline-notifications-none"></i> Notifications</h3>
+							<h3><i class="icon-material-baseline-notifications-none"></i> Уведомления</h3>
 							<button class="mark-as-read ripple-effect-dark" data-tippy-placement="left" title="Mark all as read">
 									<i class="icon-feather-check-square"></i>
 							</button>
@@ -204,7 +205,7 @@
 				<div class="col-xl-6">
 					<div class="dashboard-box">
 						<div class="headline">
-							<h3><i class="icon-material-outline-assignment"></i> Orders</h3>
+							<h3><i class="icon-material-outline-assignment"></i> Задания</h3>
 						</div>
 						<div class="content">
 							<ul class="dashboard-box-list">
@@ -272,6 +273,59 @@
 			</div>
 			<!-- Row / End -->
     <script>
-    $("#profile_menu").toggleClass("active");
+	$("#profile_menu").toggleClass("active");
+	var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		var config = {
+			type: 'line',
+			data: {
+				labels: ['Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август'],
+				datasets: [{
+					label: 'Просмотры',
+					backgroundColor: "blue",
+					borderColor: "blue",
+					data: [
+						256,345,323,445,678,867,987
+					],
+					fill: false,
+				}]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: ''
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Месяц'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('chart').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+
     </script>
 {% endblock %}

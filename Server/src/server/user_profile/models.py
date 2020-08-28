@@ -25,9 +25,9 @@ class Profile(models.Model):
 
     bookmarked_orders = models.ManyToManyField(SimpleOrder)
 
-    def image_folder(instance, filename):
-        filename = str(instance.user.id) + '.' + filename.split('.')[1]
-        path = "profile_pictures/{0}/{1}".format(instance.user.id, filename)
+    def image_folder(self, filename):
+        filename = str(self.user.id) + '.' + filename.split('.')[1]
+        path = "profile_pictures/{0}/{1}".format(self.user.id, filename)
         file_path = os.path.join(os.path.abspath(settings.MEDIA_ROOT),path)
         if os.path.isfile(file_path):
             os.remove(file_path)
@@ -52,14 +52,11 @@ class Profile(models.Model):
         return self.user.first_name + " " + self.user.last_name
     @property
     def is_email_verified(self):
-        if self.user.isPerformer:
+        """if self.user.isPerformer:
             return self.user.performer.verification.is_email_verified
         else:
-            return False
-        # elif self.user.isCustomer:
-        #     return self.user.customer.verification.is_email_verified()
-        # elif self.user.isFirm:
-        #     return self.user.firm.verification.is_email_verified()
+            return False"""
+        return False
 
     @property
     def is_passport_verified(self):

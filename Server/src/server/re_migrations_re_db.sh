@@ -16,6 +16,7 @@ python3 manage.py makemigrations verification
 python3 manage.py createcachetable
 python3 manage.py migrate
 
+python3 manage.py shell -c "from authentication.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')"
 python3 manage.py loaddata init_data/orderstatus.json
 python3 manage.py loaddata init_data/cities.json
 python3 manage.py loaddata init_data/orderrespondstatus.json

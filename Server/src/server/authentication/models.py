@@ -16,7 +16,6 @@ class User(AbstractUser):
             return self.firm.name
         return '%s %s' % (self.first_name, self.last_name)
 
-
 class Firm(models.Model):
     name = models.CharField(max_length=128, blank=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)

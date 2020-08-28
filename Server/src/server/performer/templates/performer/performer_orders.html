@@ -11,9 +11,9 @@
             <!-- Breadcrumbs -->
             <nav id="breadcrumbs" class="dark">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Dashboard</a></li>
-                    <li>My Active Bids</li>
+                    <li><a href="{% url 'index' %}">Главная страница</a></li>
+			        <li><a href="{% url 'user_profile_app:profile' %}">Профиль</a></li>
+                    <li>Мои отклики</li>
                 </ul>
             </nav>
         </div>

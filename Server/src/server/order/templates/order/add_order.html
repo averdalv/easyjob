@@ -26,9 +26,9 @@
     <!-- Breadcrumbs -->
     <nav id="breadcrumbs" class="dark">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li>Post a Job</li>
+            <li><a href="{% url 'index' %}">Главная страница</a></li>
+			<li><a href="{% url 'user_profile_app:profile' %}">Профиль</a></li>
+            <li>Создать задание</li>
         </ul>
     </nav>
 </div>
