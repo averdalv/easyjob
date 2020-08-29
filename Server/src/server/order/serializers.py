@@ -11,7 +11,7 @@ class SimpleOrderSerializer(serializers.ModelSerializer):
         model = SimpleOrder
         fields = '__all__'
         # exclude = ['order_image_preview']
-        depth = 1
+        depth = 2
 
     def to_representation(self, obj):
         ret = super().to_representation(obj)

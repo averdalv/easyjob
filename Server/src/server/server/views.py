@@ -7,10 +7,11 @@ from notifications.settings import get_config
 from notifications.utils import id2slug
 
 from server.services import NotificationType
-
+from performer.models import Performer
 
 def index(request):
-    return render(request, 'index.html')
+    performers = Performer.objects.all()
+    return render(request, 'index.html',{"performers":performers})
 
 # To service
 def build_notification_data(user, notification_type, num_to_fetch, mark_as_read):

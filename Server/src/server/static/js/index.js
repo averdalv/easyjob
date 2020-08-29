@@ -4,7 +4,7 @@ function insert_popular_categories(categories) {
     categories.forEach(function (category) {
         categories_content += `
         <div class="col-xl-3 col-md-6">
-            <a href="jobs-list-layout-1.html" class="photo-box small"
+            <a href="/orders/?category=${category[1]}" class="photo-box small"
                 data-background-image="${image_base_url + '/job-category-01.jpg'}"
                 style="background-image: url(${image_base_url + '/job-category-01.jpg'});">
                 <div class="photo-box-content">
@@ -31,11 +31,11 @@ function insert_orders_now(orders) {
                         <h3 class="job-listing-title">${order['name']}</h3>
                         <div class="job-listing-footer">
                             <ul>
-                                <li><i class="icon-material-outline-business"></i> Hexagon
+                                <li><i class="icon-material-outline-business"></i> ${order['payment']['name']}
                                     <div class="verified-badge" title="Verified Employer"
                                         data-tippy-placement="top"></div>
                                 </li>
-                                <li><i class="icon-material-outline-location-on"></i> San Francissco</li>
+                                <li><i class="icon-material-outline-location-on"></i> ${order['location']['city']['name']}</li>
                                 <li><i class="icon-material-outline-business-center"></i>${order['category']['name']}</li>
                                 <li><i class="icon-material-outline-access-time"></i>${order['time_created']}</li>
                             </ul>
@@ -47,19 +47,27 @@ function insert_orders_now(orders) {
         `);
     }
 }
-
+function get_word_by_number(number){
+    if(number%10 == 1 && number != 11){
+        return "Задание";
+    }
+    else if(number == 2 || number == 3 || number == 4){
+        return "Задания";
+    }
+    return "Заданий";
+}
 function insert_active_cities(cities) {
     var active = $("#active_cities_sep");
     var cities_content = "";
     cities.forEach(function (city) {
         cities_content += `           
         <div class="col-xl-3 col-md-6">
-            <a href="jobs-list-layout-1.html" class="photo-box"
-                data-background-image="${image_base_url + '/featured-city-01.jpg'}"
-                style="background-image: url(${image_base_url + '/featured-city-01.jpg'});">
+            <a href="/orders/?city=${city[1]}" class="photo-box"
+                data-background-image="${image_base_url + "/" + city[1]+'.jpg'}"
+                style="background-image: url(${image_base_url + "/" + city[1]+'.jpg'});">
                 <div class="photo-box-content">
                     <h3>${city[0]}</h3>
-                    <span>${city[2]} Заданий</span>
+                    <span>${city[2]} ${get_word_by_number(city[2])}</span>
                 </div>
             </a>
         </div>

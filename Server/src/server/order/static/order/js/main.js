@@ -177,8 +177,8 @@ function insert_orders(response) {
                         <h4 style="padding: 4px">
                             ${
             order.is_fixed_price ?
-                order.price_high + "$" :
-                order.price_low + "$ - " + order.price_high + "$"
+                order.price_high + " грн" :
+                order.price_low + " - " + order.price_high + " грн"
             }
                         </h4>
                         <!-- <span>Fixed Price</span> -->
