@@ -15,99 +15,42 @@
 
 				<!-- Location -->
 				<div class="sidebar-widget">
-					<h3>Location</h3>
+					<h3>Город</h3>
 					<div class="input-with-icon">
 						<div id="autocomplete-container">
-							<input id="autocomplete-input" type="text" placeholder="Location">
+							<input id="autocomplete-input" type="text" placeholder="Город">
 						</div>
 						<i class="icon-material-outline-location-on"></i>
 					</div>
 				</div>
 
-				<!-- Category -->
-				<div class="sidebar-widget">
-					<h3>Category</h3>
-					<select class="selectpicker default" multiple data-selected-text-format="count" data-size="7" title="All Categories" >
-						<option>Admin Support</option>
-						<option>Customer Service</option>
-						<option>Data Analytics</option>
-						<option>Design & Creative</option>
-						<option>Legal</option>
-						<option>Software Developing</option>
-						<option>IT & Networking</option>
-						<option>Writing</option>
-						<option>Translation</option>
-						<option>Sales & Marketing</option>
-					</select>
-				</div>
+			
 
-				<!-- Keywords -->
-				<div class="sidebar-widget">
-					<h3>Keywords</h3>
-					<div class="keywords-container">
-						<div class="keyword-input-container">
-							<input type="text" class="keyword-input" placeholder="e.g. task title"/>
-							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
-						</div>
-						<div class="keywords-list"><!-- keywords go here --></div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
 
-				<!-- Hourly Rate -->
+				<!--  -->
 				<div class="sidebar-widget">
-					<h3>Hourly Rate</h3>
+					<h3>Оплата</h3>
 					<div class="margin-top-55"></div>
 
 					<!-- Range Slider -->
-					<input class="range-slider" type="text" value="" data-slider-currency="$" data-slider-min="10" data-slider-max="250" data-slider-step="5" data-slider-value="[10,250]"/>
+					<input class="range-slider" type="text" value="" data-slider-currency="" data-slider-min="50" data-slider-max="5000" data-slider-step="5" data-slider-value="[50,5000]"/>
 				</div>
 
 				<!-- Tags -->
 				<div class="sidebar-widget">
-					<h3>Skills</h3>
-
+					<h3>Категории</h3>
+					{%for category in categories%}
 					<div class="tags-container">
 						<div class="tag">
-							<input type="checkbox" id="tag1"/>
-							<label for="tag1">front-end dev</label>
-						</div>
-						<div class="tag">
-							<input type="checkbox" id="tag2"/>
-							<label for="tag2">angular</label>
-						</div>
-						<div class="tag">
-							<input type="checkbox" id="tag3"/>
-							<label for="tag3">react</label>
-						</div>
-						<div class="tag">
-							<input type="checkbox" id="tag4"/>
-							<label for="tag4">vue js</label>
-						</div>
-						<div class="tag">
-							<input type="checkbox" id="tag5"/>
-							<label for="tag5">web apps</label>
-						</div>
-						<div class="tag">
-							<input type="checkbox" id="tag6"/>
-							<label for="tag6">design</label>
-						</div>
-						<div class="tag">
-							<input type="checkbox" id="tag7"/>
-							<label for="tag7">wordpress</label>
+							<input type="checkbox" id="tag{{category.id}}"/>
+							<label for="tag{{category.id}}">{{category.name}}</label>
 						</div>
 					</div>
+					{%endfor%}
 					<div class="clearfix"></div>
 
 					<!-- More Skills -->
-					<div class="keywords-container margin-top-20">
-						<div class="keyword-input-container">
-							<input type="text" class="keyword-input" placeholder="add more skills"/>
-							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
-						</div>
-						<div class="keywords-list"><!-- keywords go here --></div>
-						<div class="clearfix"></div>
-					</div>
+					
 				</div>
 				<div class="clearfix"></div>
 
@@ -118,17 +61,15 @@
 			<h3 class="page-title">Search Results</h3>
 
 			<div class="notify-box margin-top-15">
-				<div class="switch-container">
-					<label class="switch"><input type="checkbox"><span class="switch-button"></span><span class="switch-text">Turn on email alerts for this search</span></label>
-				</div>
+				
 
 				<div class="sort-by">
-					<span>Sort by:</span>
+					<span>Сортировать:</span>
 					<select class="selectpicker hide-tick">
-						<option>Relevance</option>
-						<option>Newest</option>
-						<option>Oldest</option>
-						<option>Random</option>
+						<option>Актуальные</option>
+                        <option>Новые</option>
+                        <option>Старые</option>
+                        <option>Случайные</option>
 					</select>
 				</div>
 			</div>
@@ -159,11 +100,11 @@
 
 							<!-- Name -->
 							<div class="freelancer-name">
-								<h4><a href="#">{{ performer.user.first_name }} {{ performer.user.last_name }}<img class="flag" src="{% static 'images/flags/gb.svg' %}" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
-								<span>UI/UX Designer</span>
+								<h4><a href="#">{{ performer.user.first_name }} {{ performer.user.last_name }}<img class="flag" src="{% static 'images/flags/ua.svg' %}" alt="" title="Украина" data-tippy-placement="top"></a></h4>
+		
 								<!-- Rating -->
 								<div class="freelancer-rating">
-									<div class="star-rating" data-rating="4.9"></div>
+									<div class="star-rating" data-rating="{{performer.rating}}"></div>
 								</div>
 							</div>
 						</div>
@@ -173,9 +114,9 @@
 					<div class="freelancer-details">
 						<div class="freelancer-details-list">
 							<ul>
-								<li>Location <strong><i class="icon-material-outline-location-on"></i> London</strong></li>
-								<li>Rate <strong>$60 / hr</strong></li>
-								<li>Job Success <strong>95%</strong></li>
+								<li>Горож <strong><i class="icon-material-outline-location-on"></i> Киев</strong></li>
+								<li>Цена <strong>300 грн/час</strong></li>
+								<li>Успешность <strong>95%</strong></li>
 							</ul>
 						</div>
 						<a href="{{ performer.get_absolute_url }}" class="button button-sliding-icon ripple-effect">Профиль <i class="icon-material-outline-arrow-right-alt"></i></a>
@@ -199,8 +140,8 @@
 						<nav class="pagination">
 							<ul>
 								<li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
-								<li><a href="#" class="ripple-effect">1</a></li>
-								<li><a href="#" class="current-page ripple-effect">2</a></li>
+								<li><a href="#" class="current-page ripple-effect">1</a></li>
+								<li><a href="#" class="ripple-effect">2</a></li>
 								<li><a href="#" class="ripple-effect">3</a></li>
 								<li><a href="#" class="ripple-effect">4</a></li>
 								<li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>

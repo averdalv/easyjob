@@ -31,10 +31,12 @@ class SimpleOrderSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
-
-        try:
-            self.performer = Performer.objects.get(user=self.user)
-        except Performer.DoesNotExist:
+        if self.user.is_anonymous:
             self.performer = None
+        else:
+            try:
+                self.performer = Performer.objects.get(user=self.user)
+            except Performer.DoesNotExist:
+                self.performer = None
 
         super(SimpleOrderSerializer, self).__init__(*args, **kwargs)

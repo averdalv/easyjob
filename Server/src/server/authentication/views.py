@@ -13,6 +13,9 @@ from django.views.generic import View
 from authentication.forms import RegistrationForm, RegistrationFormFirm
 from performer.models import Performer
 from customer.models import Customer
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class RegistrationView(View):
@@ -48,14 +51,13 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user,backend='django.contrib.auth.backends.ModelBackend')
+                logger.info("Successful login: %s", username)
                 return HttpResponseRedirect(reverse('user_profile_app:profile'))
             else:
                 return HttpResponse("Your account was inactive.")
         else:
-            print("Someone tried to login and failed.")
-            print("They used username: {} and password:{}".format(
-                username, password))
-            return HttpResponse("Invalid login details given")
+            logger.error("Failed login: %s", username)
+            return HttpResponse("Неправильные данные для входа")
     else:
         return HttpResponse("Bad request")
 

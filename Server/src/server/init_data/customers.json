@@ -1,0 +1,18 @@
+[
+    {
+    "model": "customer.customer",
+    "pk": 1,
+    "fields": {
+        "user":2,
+        "rating":4.3
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 2,
+    "fields": {
+        "user":5,
+        "rating":3.5
+    }
+}
+]

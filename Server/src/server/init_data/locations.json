@@ -1,0 +1,96 @@
+[
+{
+  "model": "location.city",
+  "pk": 1,
+  "fields": {
+    "name": "\u041a\u0438\u0435\u0432",
+    "value": "kiev",
+    "lat": 50.4500336,
+    "lon": 30.5241361
+  }
+},
+{
+  "model": "location.city",
+  "pk": 2,
+  "fields": {
+    "name": "\u0427\u0435\u0440\u043d\u0438\u0433\u043e\u0432",
+    "value": "chernigov",
+    "lat": 51.4930575,
+    "lon": 31.2947188
+  }
+},
+{
+  "model": "location.city",
+  "pk": 3,
+  "fields": {
+    "name": "\u0412\u0438\u043d\u043d\u0438\u0446\u0430",
+    "value": "vinnica",
+    "lat": 49.2320162,
+    "lon": 28.467975
+  }
+},
+{
+  "model": "location.city",
+  "pk": 4,
+  "fields": {
+    "name": "\u0416\u0438\u0442\u043e\u043c\u0438\u0440",
+    "value": "zhitomir",
+    "lat": 50.2598298,
+    "lon": 28.6692345
+  }
+},
+{
+  "model": "location.city",
+  "pk": 5,
+  "fields": {
+    "name": "\u0418\u0432\u0430\u043d\u043e-\u0424\u0440\u0430\u043d\u043a\u043e\u0432\u0441\u043a",
+    "value": "ivano-frankovsk",
+    "lat": 48.9092,
+    "lon": 24.7007
+  }
+},
+{
+  "model": "location.location",
+  "pk": 1,
+  "fields": {
+    "lat": 50.450555,
+    "lon": 30.5210808,
+    "city": 1,
+    "address": "\u041c\u0430\u0439\u0434\u0430\u043d \u041d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u0438, \u041a\u0438\u0435\u0432"
+  }
+},
+{
+  "model": "location.location",
+  "pk": 2,
+  "fields": {
+    "lat": 49.234815,
+    "lon": 28.494814,
+    "city": 3,
+    "address": "\u0423\u043b\u0438\u0446\u0430 \u0412\u0435\u0440\u0445\u0430\u0440\u043d\u0430, 70"
+  }
+},
+{
+  "model": "location.orderlocationtype",
+  "pk": 1,
+  "fields": {
+    "name": "\u0423 \u0437\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u0430",
+    "value": "in-customer"
+  }
+},
+{
+  "model": "location.orderlocationtype",
+  "pk": 2,
+  "fields": {
+    "name": "\u0423 \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044f",
+    "value": "in-performer"
+  }
+},
+{
+  "model": "location.orderlocationtype",
+  "pk": 3,
+  "fields": {
+    "name": "\u0423\u0434\u0430\u043b\u0435\u043d\u043d\u043e",
+    "value": "in-remote"
+  }
+}
+]

@@ -12,7 +12,7 @@ import datetime
 import server.settings
 
 from location.models import Location
-
+from server.tools import disable_for_loaddata
 from order.models import SimpleOrder
 
 class Profile(models.Model):
@@ -69,12 +69,16 @@ class Profile(models.Model):
         if self.user.isPerformer:
             self.user.performer.verification.email_verification.is_verified = True
             self.user.performer.verification.email_verification.save()
+
 @receiver(post_save, sender=User)
+@disable_for_loaddata
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
+@disable_for_loaddata
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    if instance.profile is not None:
+        instance.profile.save()

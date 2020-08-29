@@ -6,10 +6,7 @@ from customer.models.enums import CustomerCategoryChoices
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    customer_type = models.CharField(
-        max_length=128,
-        choices=CustomerCategoryChoices
-    )
+    rating = models.FloatField(default=0)
     def __str__(self):
         return self.user.last_name + " " + self.user.first_name
 

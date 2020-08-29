@@ -11,10 +11,11 @@ class User(AbstractUser):
         if self.isFirm:
             return self.firm.name
         return '%s %s' % (self.first_name, self.last_name)
+        
     def __str__(self):
-        if self.isFirm:
-            return self.firm.name
-        return '%s %s' % (self.first_name, self.last_name)
+        if self.is_superuser:
+            return "Admin"
+        return self.get_name
 
 class Firm(models.Model):
     name = models.CharField(max_length=128, blank=False)

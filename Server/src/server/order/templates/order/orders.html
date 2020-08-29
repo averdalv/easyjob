@@ -12,7 +12,7 @@
     "{% if current_category == category.value %}selected {% endif %}"
     var current_category = "{{ current_category }}";
     var csrf = '{{ csrf_token }}';
-    var order_url_base = "/order";
+    var order_url_base = "/orders";
     var path = "{% url 'order_app:orders' %}";
     var first_order_path = "{% url 'order_app:add_order' %}";
     var search_dict = {};
@@ -206,10 +206,10 @@
                  <div class="sort-by">
                     <span>Сортировать:</span>
                     <select class="selectpicker hide-tick">
-                        <option>Relevance</option>
-                        <option>Newest</option>
-                        <option>Oldest</option>
-                        <option>Random</option>
+                        <option>Актуальные</option>
+                        <option>Новые</option>
+                        <option>Старые</option>
+                        <option>Случайные</option>
                     </select>
                 </div> 
             </div> 

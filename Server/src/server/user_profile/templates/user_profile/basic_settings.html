@@ -48,9 +48,10 @@
 
 						<div class="col-auto">
 							<div class="avatar-wrapper" data-tippy-placement="bottom" title="Фото профиля">
-								<img class="profile-pic" src="{{ user.profile.profile_picture.url }}" alt="" />
+								<img class="profile-pic" src="{% if user.profile.profile_picture %}{{ user.profile.profile_picture.url }} {% else %}{% static 'images/anonymous-user.png' %}{% endif %}" alt="" />
 								<div class="upload-button"></div>
-								{{ base_settings_form.profile_picture }}
+								{{base_settings_form.profile_picture}}
+							
 							</div>
 						</div>
 

@@ -6,7 +6,8 @@ class City(models.Model):
     value = models.CharField(max_length=256, blank=False)
     lat = models.FloatField()
     lon = models.FloatField()
-
+    def __str__(self):
+        return self.name
 
 class Location(models.Model):
     lat = models.FloatField()

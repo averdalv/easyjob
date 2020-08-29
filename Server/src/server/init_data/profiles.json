@@ -1,0 +1,44 @@
+[
+    {
+        "model": "user_profile.profile",
+        "pk": 2,
+        "fields": {
+            "user":2,
+            "about":"Информация о пользователе",
+            "gender":"m",
+            "profile_picture":"./init_images/profile1.jpg"
+
+            
+        }
+    },
+    {
+        "model": "user_profile.profile",
+        "pk": 3,
+        "fields": {
+            "user":3,
+            "about":"Информация о пользователе",
+            "gender":"m",
+            "profile_picture":"./init_images/profile2.jpg"
+        }
+    },
+    {
+        "model": "user_profile.profile",
+        "pk": 4,
+        "fields": {
+            "user":4,
+            "about":"Информация о пользователе",
+            "gender":"m",
+            "profile_picture":"./init_images/profile3.jpg"
+        }
+    },
+    {
+        "model": "user_profile.profile",
+        "pk": 5,
+        "fields": {
+            "user":5,
+            "about":"Информация о пользователе",
+            "gender":"m",
+            "profile_picture":"./init_images/profile4.jpg"
+        }
+    }
+]

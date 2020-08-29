@@ -29,8 +29,11 @@ migrations
 
 .env
 db.sqlite3
-Media
+media/*
 .idea
 
 !__init__.py
 venv/
+logs/
+!media/init_images
+!media/init_images/*

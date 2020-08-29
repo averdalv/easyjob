@@ -24,10 +24,10 @@ import notifications.urls
 
 urlpatterns = [
     url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-    path('performer/', include('performer.urls')),
-    path('customer/', include('customer.urls')),
+    path('performers/', include('performer.urls')),
+    path('customers/', include('customer.urls')),
     path('authentication/', include('authentication.urls')),
-    path('order/', include(('order.urls', 'order_app'))),
+    path('orders/', include(('order.urls', 'order_app'))),
     path('admin/', admin.site.urls),
     path('profile/', include('user_profile.urls')),
     path('chat/', include('chat.urls')),

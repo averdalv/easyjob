@@ -39,15 +39,14 @@
                             </h3>
                             <h5>Заказчик</h5>
                             <ul>
-                                <li><a href="single-company-profile.html"><i class="icon-material-outline-business"></i>
-                                        King</a></li>
+                                
                                 <li>
-                                    <div class="star-rating" data-rating="4.9"></div>
+                                    <div class="star-rating" data-rating="{{order.customer.rating}}"></div>
                                 </li>
-                                <li><img class="flag" src="{% static 'images/flags/gb.svg' %}" alt=""> United Kingdom
+                                <li><img class="flag" src="{% static 'images/flags/ua.svg' %}" alt=""> Украина
                                 </li>
                                 <li>
-                                    <div class="verified-badge-with-title">Verified</div>
+                                    <div class="verified-badge-with-title">Подтвержден</div>
                                 </li>
                             </ul>
                         </div>
@@ -57,9 +56,9 @@
                             <div class="salary-type">Вознаграждение</div>
                             <div class="salary-amount">
                                 {% if order.is_fixed_price %}
-                                {{ order.price_high }}$
+                                {{ order.price_high }} грн
                                 {% else %}
-                                {{ order.price_low }}$ - {{ order.price_high }}$
+                                {{ order.price_low }}грн - {{ order.price_high }}грн
                                 {% endif %}
                             </div>
                         </div>
@@ -175,63 +174,41 @@
 
                 <!-- Listings Container -->
                 <div class="listings-container grid-layout">
-
+                    {%for related_order in related_orders%}
                     <!-- Job Listing -->
-                    <a href="#" class="job-listing">
+                    <a href="/orders/{{related_order.id}}" class="job-listing">
 
                         <!-- Job Listing Details -->
                         <div class="job-listing-details">
                             <!-- Logo -->
                             <div class="job-listing-company-logo">
-                                <img src="images/company-logo-02.png" alt="">
+                                <img src={% if related_order.customer.user.profile.profile_picture %}"{{ related_order.customer.user.profile.profile_picture.url }}" {% else %}{% static 'images/anonymous-user.png' %}{% endif %} alt="">
                             </div>
 
                             <!-- Details -->
                             <div class="job-listing-description">
-                                <h4 class="job-listing-company">Coffee</h4>
-                                <h3 class="job-listing-title">Barista and Cashier</h3>
+                                <h4 class="job-listing-company">{{related_order.category.name}}</h4>
+                                <h3 class="job-listing-title">{{related_order.name}}</h3>
                             </div>
                         </div>
 
                         <!-- Job Listing Footer -->
                         <div class="job-listing-footer">
                             <ul>
-                                <li><i class="icon-material-outline-location-on"></i> San Francisco</li>
-                                <li><i class="icon-material-outline-business-center"></i> Full Time</li>
-                                <li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>
-                                <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
+                                <li><i class="icon-material-outline-location-on"></i> {{related_order.location.city.name}}</li>
+                                <li><i class="icon-material-outline-business-center"></i> {{related_order.payment.name}}</li>
+                                <li><i class="icon-material-outline-account-balance-wallet"></i> {% if order.is_fixed_price %}
+                                    {{ order.price_high }} грн
+                                    {% else %}
+                                    {{ order.price_low }} - {{ order.price_high }} грн
+                                    {% endif %}</li>
+                                <li><i class="icon-material-outline-access-time"></i> {{related_order.time_created}}</li>
                             </ul>
                         </div>
                     </a>
-
-                    <!-- Job Listing -->
-                    <a href="#" class="job-listing">
-
-                        <!-- Job Listing Details -->
-                        <div class="job-listing-details">
-                            <!-- Logo -->
-                            <div class="job-listing-company-logo">
-                                <img src="images/company-logo-03.png" alt="">
-                            </div>
-
-                            <!-- Details -->
-                            <div class="job-listing-description">
-                                <h4 class="job-listing-company">King <span class="verified-badge"
-                                        title="Verified Employer" data-tippy-placement="top"></span></h4>
-                                <h3 class="job-listing-title">Restaurant Manager</h3>
-                            </div>
-                        </div>
-
-                        <!-- Job Listing Footer -->
-                        <div class="job-listing-footer">
-                            <ul>
-                                <li><i class="icon-material-outline-location-on"></i> San Francisco</li>
-                                <li><i class="icon-material-outline-business-center"></i> Full Time</li>
-                                <li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>
-                                <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-                            </ul>
-                        </div>
-                    </a>
+                    
+                    {% endfor %}
+                    
                 </div>
                 <!-- Listings Container / End -->
 
@@ -263,7 +240,7 @@
                 <!-- Sidebar Widget -->
                 <div class="sidebar-widget">
                     <div class="job-overview">
-                        <div class="job-overview-headline">Job Summary</div>
+                        <div class="job-overview-headline">Общие сведения</div>
                         <div class="job-overview-inner">
                             <ul>
                                 {% if map %}
@@ -296,12 +273,12 @@
 
                 <!-- Sidebar Widget -->
 				<div class="sidebar-widget">
-					<h3>Bookmark or Share</h3>
+					<h3>Добавить в закладки</h3>
                     <!-- Bookmark Button -->
                     <button id="bookmark" class="bookmark-button margin-bottom-25">
                         <span class="bookmark-icon"></span>
-                        <span class="bookmark-text">Bookmark</span>
-                        <span class="bookmarked-text">Bookmarked</span>
+                        <span class="bookmark-text">Добавить в закладки</span>
+                        <span class="bookmarked-text">В закладках</span>
                     </button>
                 </div>
 
@@ -380,7 +357,7 @@
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5
-    }).addTo(mymap).bindPopup("I am a circle.");
+    }).addTo(mymap).bindPopup("Место выполнения");
 
     // L.polygon([
     //     [51.509, -0.08],

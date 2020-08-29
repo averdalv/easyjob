@@ -1,0 +1,82 @@
+[
+    {
+    "model": "authentication.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$TWSN8QRrHlFu$KV6GvFYX87JHgS7O7QdW8F7Ndcopo0OMTFTb6+Ytkl4=",
+        "is_superuser": false,
+        "username": "u1@gmail.com",
+        "first_name": "Александр",
+        "last_name": "Иванов",
+        "email": "u1@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-10T11:52:05.085Z",
+        "isCustomer": true,
+        "isFirm": false,
+        "isPerformer": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$sfBBitWjbuss$JF8KQm21qdDgIe9BmOrC5nPh0s42Mx40PBGXjXL6Biw=",
+        "is_superuser": false,
+        "username": "u2@gmail.com",
+        "first_name": "Сергей",
+        "last_name": "Петров",
+        "email": "u2@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-10T11:52:05.085Z",
+        "isCustomer": false,
+        "isFirm": false,
+        "isPerformer": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$hCvVYu2kQjlg$YszhQ0mXIlPQCkaxa05UaQqjEQZHaCkd0uvjMsLdXiU=",
+        "is_superuser": false,
+        "username": "u3@gmail.com",
+        "first_name": "Иван",
+        "last_name": "Сидоров",
+        "email": "u3@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-10T11:52:05.085Z",
+        "isCustomer": false,
+        "isFirm": false,
+        "isPerformer": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$LYXt5FcJoNAH$fQQ5W1XvNovFr9dhhuEq0iRUY1roR379/mlBbSJHUnQ=",
+        "is_superuser": false,
+        "username": "u4@gmail.com",
+        "first_name": "Антон",
+        "last_name": "Павленко",
+        "email": "u4@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-10T11:52:05.085Z",
+        "isCustomer": true,
+        "isFirm": false,
+        "isPerformer": false,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "model": "order.baseorder",
+    "pk":1,
+    "fields": {}
+  },
+  {
+    "model": "order.baseorder",
+    "pk":2,
+    "fields": {}
+  },
+{
+  "model": "order.simpleorder",
+  "pk": 1,
+  "fields": {
+    "name": "\u041e\u0431\u0443\u0447\u0435\u043d\u0438\u0435 \u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u043e\u043c\u0443 \u044f\u0437\u044b\u043a\u0443",
+    "time_start": "2020-08-29T13:01:19Z",
+    "time_end": "2020-08-31T13:01:25Z",
+    "order_image_preview": "",
+    "is_fixed_price": false,
+    "price_low": 300.0,
+    "price_high": 600.0,
+    "description": "\u041d\u0443\u0436\u043d\u043e \u043e\u0431\u0443\u0447\u0438\u0442\u044c \u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u043e\u043c\u0443 \u044f\u0437\u044b\u043a\u0443 \u0437\u0430 \u043a\u043e\u0440\u043e\u0442\u043a\u0438\u0439 \u0441\u0440\u043e\u043a",
+    "time_created": "2020-08-29T13:00:21Z",
+    "rating": 0.0,
+    "views": 3,
+    "gallery": null,
+    "order_location_type": 1,
+    "location": 1,
+    "category": 1,
+    "subcategory": 1,
+    "status": 1,
+    "payment": 2,
+    "performer": null,
+    "customer": 1
+  }
+},
+{
+  "model": "order.simpleorder",
+  "pk": 2,
+  "fields": {
+    "name": "\u041d\u0443\u0436\u043d\u043e \u043f\u043e\u0447\u0438\u043d\u0438\u0442\u044c \u0441\u043c\u0435\u0441\u0438\u0442\u0435\u043b\u044c",
+    "time_start": "2020-08-29T13:05:00Z",
+    "time_end": "2020-08-30T13:05:04Z",
+    "order_image_preview": "",
+    "is_fixed_price": false,
+    "price_low": 300.0,
+    "price_high": 400.0,
+    "description": "\u041d\u0443\u0436\u043d\u043e \u043f\u043e\u0447\u0438\u043d\u0438\u0442\u044c \u0441\u043c\u0435\u0441\u0438\u0442\u0435\u043b\u044c",
+    "time_created": "2020-08-29T13:04:24Z",
+    "rating": 0.0,
+    "views": 4,
+    "gallery": null,
+    "order_location_type": 1,
+    "location": 2,
+    "category": 2,
+    "subcategory": 4,
+    "status": 1,
+    "payment": 1,
+    "performer": null,
+    "customer": 2
+  }
+}
+]

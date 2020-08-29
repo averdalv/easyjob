@@ -29,8 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "192.168.0.101",
     "localhost",
-    "127.0.0.1",
-    "104.197.191.249"
+    "127.0.0.1"
 ]
 
 
@@ -195,3 +194,23 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'errors.log',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR')
+        },
+    },
+}

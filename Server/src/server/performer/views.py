@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from order.services import get_orders
-
+from order.models import Category
 
 class PerformerPage(View):
     def get(self, request, id):
@@ -23,7 +23,8 @@ class PerformerPage(View):
 class Performers(View):
     def get(self, request):
         performers = Performer.objects.all()
-        context = {"performers": performers}
+        categories = Category.objects.all()
+        context = {"performers": performers,"categories":categories}
         return render(request, "performer/performers.html", context)
 
 

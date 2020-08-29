@@ -114,7 +114,7 @@ $(document).on("click", ".keyword-remove", function () {
 
     if (type == "customer_type"){
         // alert($("input[id='radio-1'][value='all']").click())
-        alert("2")
+        
     }
 
     search(type, 'all');

@@ -1,0 +1,20 @@
+[
+    {
+    "model": "performer.performer",
+    "pk": 1,
+    "fields": {
+        "user":3,
+        "num_responses":10,
+        "sum_rating":41
+    }
+},
+{
+    "model": "performer.performer",
+    "pk": 2,
+    "fields": {
+        "user":4,
+        "num_responses":5,
+        "sum_rating":25
+    }
+}
+]

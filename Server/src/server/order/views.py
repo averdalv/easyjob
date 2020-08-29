@@ -131,9 +131,11 @@ class OrderView(View):
         order.save()
         print(order.price_low, order.price_high)
         galleryImages = GalleryImage.objects.filter(gallery=order.gallery)
+        related_orders = SimpleOrder.objects.exclude(id=id)
         return render(request, 'order/order.html', {
             'order': order,
-            'galleryImages': galleryImages
+            'galleryImages': galleryImages,
+            'related_orders':related_orders
         })
 
 class CitiesJsonView(View):
@@ -255,7 +257,7 @@ class AddOrderView(View):
 
         return redirect('order_app:orders')
 
-    # @method_decorator(customer_required_dec)
+    @method_decorator(customer_required_dec)
     def get(self, request):
         simple_order_form = SimpleOrderForm()
         return render(request, 'order/add_order.html',
