@@ -18,7 +18,7 @@ from user_profile.forms import BasicSettingsFormPrivatePerson, BasicSettingsPerf
 
 from order.models import SimpleOrder, OrderStatus
 from customer.models import Customer
-
+from chat.models import Message
 from order.services import get_orders
 
 # TODO check only for authorized users
@@ -27,6 +27,7 @@ from verification.token_generator import account_activation_token
 
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
+        messages = Message.objects.filter(message_to=request.user,is_read=False)
         if request.user.isCustomer:
             status = request.GET.get('status', None)
             if status:
@@ -34,10 +35,11 @@ class ProfileView(LoginRequiredMixin, View):
             customer = get_object_or_404(Customer, user=request.user)
             orders = get_orders(status=status, customer=customer, per_page=100) # tmp
         else:
-            orders = []
+            orders = get_orders(performer=request.user.performer)
         
         return render(request, 'user_profile/profile.html', {
-            'orders': orders
+            'orders': orders,
+            'messages':messages
         })
 
 

@@ -5,8 +5,8 @@ function insert_popular_categories(categories) {
         categories_content += `
         <div class="col-xl-3 col-md-6">
             <a href="/orders/?category=${category[1]}" class="photo-box small"
-                data-background-image="${image_base_url + '/job-category-01.jpg'}"
-                style="background-image: url(${image_base_url + '/job-category-01.jpg'});">
+                data-background-image="${image_base_url + "/" + category[1]+'.jpg'}"
+                style="background-image: url(${image_base_url + "/" + category[1]+'.jpg'});">
                 <div class="photo-box-content">
                     <h3>${category[0]}</h3>
                     <span>${category[2]}</span>

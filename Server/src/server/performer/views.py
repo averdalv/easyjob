@@ -10,13 +10,14 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from order.services import get_orders
-from order.models import Category
+from order.models import Category,SimpleOrder
 
 class PerformerPage(View):
     def get(self, request, id):
         performer = get_object_or_404(Performer, id__iexact=id)
         performing_sub_categories = PerformingSubCategory.objects.filter(performer=performer)
-        context = {"performer": performer,"performing_sub_categories":performing_sub_categories}
+        done_orders = SimpleOrder.objects.filter(performer=performer)
+        context = {"performer": performer,"performing_sub_categories":performing_sub_categories,"done_orders":done_orders}
         return render(request, "performer/performer_page.html", context)
 
 

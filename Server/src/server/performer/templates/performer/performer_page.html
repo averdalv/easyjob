@@ -73,74 +73,26 @@
             <!-- Boxed List -->
             <div class="boxed-list margin-bottom-60">
                 <div class="boxed-list-headline">
-                    <h3><i class="icon-material-outline-thumb-up"></i> Work History and Feedback</h3>
+                    <h3><i class="icon-material-outline-thumb-up"></i> Истрория выполненых работ</h3>
                 </div>
                 <ul class="boxed-list-ul">
+                    {%for done_order in done_orders%}
                     <li>
                         <div class="boxed-list-item">
                             <!-- Content -->
                             <div class="item-content">
-                                <h4>Web, Database and API Developer <span>Rated as Freelancer</span></h4>
+                                <h4>{{done_order.name}} <span>{{done_order.category.name}}</span></h4>
                                 <div class="item-details margin-top-10">
                                     <div class="star-rating" data-rating="5.0"></div>
-                                    <div class="detail-item"><i class="icon-material-outline-date-range"></i> August
-                                        2019</div>
+                                    <div class="detail-item"><i class="icon-material-outline-date-range"></i> {{done_order.time_created}}</div>
                                 </div>
                                 <div class="item-description">
-                                    <p>Excellent programmer - fully carried out my project in a very professional
-                                        manner. </p>
+                                    <p>{{done_order.about}} </p>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="boxed-list-item">
-                            <!-- Content -->
-                            <div class="item-content">
-                                <h4>WordPress Theme Installation <span>Rated as Freelancer</span></h4>
-                                <div class="item-details margin-top-10">
-                                    <div class="star-rating" data-rating="5.0"></div>
-                                    <div class="detail-item"><i class="icon-material-outline-date-range"></i> June 2019
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="boxed-list-item">
-                            <!-- Content -->
-                            <div class="item-content">
-                                <h4>Fix Python Selenium Code <span>Rated as Employer</span></h4>
-                                <div class="item-details margin-top-10">
-                                    <div class="star-rating" data-rating="5.0"></div>
-                                    <div class="detail-item"><i class="icon-material-outline-date-range"></i> May 2019
-                                    </div>
-                                </div>
-                                <div class="item-description">
-                                    <p>I was extremely impressed with the quality of work AND how quickly he got it
-                                        done. He then offered to help with another side part of the project that we
-                                        didn't even think about originally.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="boxed-list-item">
-                            <!-- Content -->
-                            <div class="item-content">
-                                <h4>PHP Core Website Fixes <span>Rated as Freelancer</span></h4>
-                                <div class="item-details margin-top-10">
-                                    <div class="star-rating" data-rating="5.0"></div>
-                                    <div class="detail-item"><i class="icon-material-outline-date-range"></i> May 2019
-                                    </div>
-                                </div>
-                                <div class="item-description">
-                                    <p>Awesome work, definitely will rehire. Poject was completed not only with the
-                                        requirements, but on time, within our small budget.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    {%endfor%}
                 </ul>
 
                 <!-- Pagination -->
@@ -162,59 +114,7 @@
             <!-- Boxed List / End -->
 
             <!-- Boxed List -->
-            <div class="boxed-list margin-bottom-60">
-                <div class="boxed-list-headline">
-                    <h3><i class="icon-material-outline-business"></i> Employment History</h3>
-                </div>
-                <ul class="boxed-list-ul">
-                    <li>
-                        <div class="boxed-list-item">
-                            <!-- Avatar -->
-                            <div class="item-image">
-                                <img src="images/browse-companies-03.png" alt="">
-                            </div>
-
-                            <!-- Content -->
-                            <div class="item-content">
-                                <h4>Development Team Leader</h4>
-                                <div class="item-details margin-top-7">
-                                    <div class="detail-item"><a href="#"><i class="icon-material-outline-business"></i>
-                                            Acodia</a></div>
-                                    <div class="detail-item"><i class="icon-material-outline-date-range"></i> May 2019 -
-                                        Present</div>
-                                </div>
-                                <div class="item-description">
-                                    <p>Focus the team on the tasks at hand or the internal and external customer
-                                        requirements.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="boxed-list-item">
-                            <!-- Avatar -->
-                            <div class="item-image">
-                                <img src="images/browse-companies-04.png" alt="">
-                            </div>
-
-                            <!-- Content -->
-                            <div class="item-content">
-                                <h4><a href="#">Lead UX/UI Designer</a></h4>
-                                <div class="item-details margin-top-7">
-                                    <div class="detail-item"><a href="#"><i class="icon-material-outline-business"></i>
-                                            Acorta</a></div>
-                                    <div class="detail-item"><i class="icon-material-outline-date-range"></i> April 2014
-                                        - May 2019</div>
-                                </div>
-                                <div class="item-description">
-                                    <p>I designed and implemented 10+ custom web-based CRMs, workflow systems, payment
-                                        solutions and mobile apps.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            
             <!-- Boxed List / End -->
 
         </div>
@@ -287,29 +187,7 @@
                     </div>
                 </div>
 
-                <!-- Widget -->
-                <div class="sidebar-widget">
-                    <h3>Skills</h3>
-                    <div class="task-tags">
-                        <span>iOS</span>
-                        <span>Android</span>
-                        <span>mobile apps</span>
-                        <span>design</span>
-                        <span>Python</span>
-                        <span>Flask</span>
-                        <span>PHP</span>
-                        <span>WordPress</span>
-                    </div>
-                </div>
-
-                <!-- Widget -->
-                <div class="sidebar-widget">
-                    <h3>Attachments</h3>
-                    <div class="attachments-container">
-                        <a href="#" class="attachment-box ripple-effect"><span>Cover Letter</span><i>PDF</i></a>
-                        <a href="#" class="attachment-box ripple-effect"><span>Contract</span><i>DOCX</i></a>
-                    </div>
-                </div>
+              
 
                 <!-- Sidebar Widget -->
                 <div class="sidebar-widget">
@@ -334,7 +212,7 @@
                     <div class="share-buttons margin-top-25">
                         <div class="share-buttons-trigger"><i class="icon-feather-share-2"></i></div>
                         <div class="share-buttons-content">
-                            <span>Interesting? <strong>Share It!</strong></span>
+                            <span>Интересный профиль? <strong>Поделиться!</strong></span>
                             <ul class="share-buttons-icons">
                                 <li><a href="#" data-button-color="#3b5998" title="Share on Facebook"
                                         data-tippy-placement="top"><i class="icon-brand-facebook-f"></i></a></li>
