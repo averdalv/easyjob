@@ -49,6 +49,8 @@ class Profile(models.Model):
             return False
 
     def __str__(self):
+        if self.user.is_superuser:
+            return "Admin"
         return self.user.first_name + " " + self.user.last_name
     @property
     def is_email_verified(self):
