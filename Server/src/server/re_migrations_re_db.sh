@@ -2,7 +2,7 @@
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 find . -path "*/migrations/*.pyc"  -delete
 rm -f db.sqlite3
-
+postgres psql -c 'DROP database IF EXISTS easyjob_db;'
 python3 manage.py makemigrations authentication
 python3 manage.py makemigrations customer
 python3 manage.py makemigrations performer

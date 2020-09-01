@@ -21,15 +21,13 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-SECRET_KEY = 'fat$$m6fa@pr_t_ek5l5)k6n4r%!n_7p7f@^l!*=3x2+moptiq'
-
-DEBUG = True
+SECRET_KEY = os.environ.get("SECRET_KEY","")
+DEBUG = os.environ.get("DEBUG",False)
 
 ALLOWED_HOSTS = [
-    "192.168.0.101",
     "localhost",
-    "127.0.0.1"
+    "127.0.0.1",
+    "35.246.140.140"
 ]
 
 
@@ -94,9 +92,13 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
 
@@ -174,16 +176,6 @@ EMAIL_PORT = 587
 
 SOCIAL_AUTH_FACEBOOK_KEY = 2324224127826129
 SOCIAL_AUTH_FACEBOOK_SECRET = "bc744584732b38bdd3d6a81edc50e53f"
-# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-# SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-#     'fields':'id,email',
-# }
-# SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
-#     ("email","email"),
-# ]
-
-# SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
-
 LOGIN_REDIRECT_URL = 'user_profile_app:profile'
 LOGOUT_URL = 'authentication_app:logout'
 LOGOUT_REDIRECT_URL = 'index'
